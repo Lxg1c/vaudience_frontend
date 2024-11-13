@@ -1,0 +1,82 @@
+$bg-color: #141414;
+$text-color: #fff;
+$Arimo-family: 'Arimo', sans-serif;
+$Play-family: 'Play', sans-serif;
+$burger-line-width: 35px;
+$burger-line-height: 2px;
+$burger-line-gap: 12px;
+
+.header {
+  background-color: $bg-color;
+  color: $text-color;
+
+  &__container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 0;
+  }
+
+  &__container-bash {
+    position: relative;
+
+    &--counter {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-family: $Play-family;
+      font-size: 26px;
+      line-height: 30px;
+      color: $text-color;
+    }
+  }
+
+  &__container-user {
+    font-family: $Arimo-family;
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 23px;
+    letter-spacing: 2px;
+    position: absolute;
+    left: -450%;
+  }
+
+  &__container-info {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    position: relative;
+  }
+
+  &__container-burger {
+    position: relative;
+    width: $burger-line-width;
+    height: calc(#{$burger-line-height} * 3 + #{$burger-line-gap});
+
+    .burger-line {
+      position: absolute;
+      width: $burger-line-width;
+      height: $burger-line-height;
+      background-color: $text-color;
+      transition: all 0.3s ease;
+
+      &:nth-child(1) {
+        top: 0;
+      }
+
+      &:nth-child(2) {
+        top: 50%;
+        transform: translateY(-50%);
+      }
+
+      &:nth-child(3) {
+        bottom: 0;
+      }
+    }
+  }
+
+  &__container-logo {
+    margin: 0 auto; // Центрируем логотип
+  }
+}
