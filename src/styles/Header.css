@@ -1,6 +1,11 @@
 .header {
   background-color: #141414;
   color: #fff;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
 }
 .header__container {
   display: flex;
@@ -40,6 +45,7 @@
   position: relative;
   width: 35px;
   height: calc(2px * 3 + 12px);
+  cursor: pointer;
 }
 .header__container-burger .burger-line {
   position: absolute;
@@ -60,6 +66,10 @@
 }
 .header__container-logo {
   margin: 0 auto;
+}
+
+body {
+  padding-top: 70px;
 }
 
 /*# sourceMappingURL=Header.css.map */

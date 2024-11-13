@@ -9,6 +9,11 @@ $burger-line-gap: 12px;
 .header {
   background-color: $bg-color;
   color: $text-color;
+  position: fixed; // Фиксируем header
+  top: 0; // Прижимаем к верху страницы
+  left: 0;
+  right: 0; // Растягиваем на всю ширину
+  z-index: 1000; // Устанавливаем z-index, чтобы header был над остальным контентом
 
   &__container {
     display: flex;
@@ -53,6 +58,7 @@ $burger-line-gap: 12px;
     position: relative;
     width: $burger-line-width;
     height: calc(#{$burger-line-height} * 3 + #{$burger-line-gap});
+    cursor: pointer;
 
     .burger-line {
       position: absolute;
@@ -79,4 +85,9 @@ $burger-line-gap: 12px;
   &__container-logo {
     margin: 0 auto; // Центрируем логотип
   }
+}
+
+// Добавляем отступ сверху, чтобы контент не перекрывался фиксированным header
+body {
+  padding-top: 70px; // Высота header + padding
 }

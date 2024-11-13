@@ -2,8 +2,16 @@ import '../styles/Header.scss';
 import BashIcon from '../assets/bash-icon.svg';
 import Logo from '../assets/logo.svg';
 import { Link } from 'react-router-dom'; // Если используете React Router
+import { useState } from 'react';
+import Sidebar from '../Sidebar/Sidebar.jsx'; // Импортируем Sidebar
 
 const Header = () => {
+    const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+
+    const toggleBurgerMenu = () => {
+        setIsSidebarOpen(!isSidebarOpen);
+    };
+
     return (
         <header className='header'>
             <div className='header__container container'>
@@ -24,13 +32,14 @@ const Header = () => {
                     <div className='header__container-user' title='User Profile'>
                         confusedSZN
                     </div>
-                    <div className='header__container-burger' aria-label='Menu'>
+                    <div onClick={toggleBurgerMenu} className='header__container-burger' aria-label='Menu'>
                         <span className='burger-line'></span>
                         <span className='burger-line'></span>
                         <span className='burger-line'></span>
                     </div>
                 </div>
             </div>
+            <Sidebar isOpen={isSidebarOpen} toggleSidebar={toggleBurgerMenu} />
         </header>
     );
 }
