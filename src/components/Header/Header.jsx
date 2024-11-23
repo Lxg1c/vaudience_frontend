@@ -1,6 +1,6 @@
-import '../styles/Header.scss';
-import BashIcon from '../assets/bash-icon.svg';
-import Logo from '../assets/logo.svg';
+import '../../styles/Header.scss';
+import BashIcon from '../../assets/bash-icon.svg';
+import Logo from '../../assets/logo.svg';
 import { Link } from 'react-router-dom'; // Если используете React Router
 import { useState } from 'react';
 import Sidebar from '../Sidebar/Sidebar.jsx'; // Импортируем Sidebar
@@ -16,14 +16,14 @@ const Header = () => {
         <header className='header'>
             <div className='header__container container'>
                 <div className='header__container-bash'>
-                    <Link to='/bash' title='Корзина'>
+                    <Link to='../bash' title='Корзина'>
                         <img src={BashIcon} alt='Bash Icon' />
                         <div className='header__container-bash--counter'>0</div>
                     </Link>
                 </div>
 
                 <div className='header__container-logo'>
-                    <Link to='/' title='Home'>
+                    <Link to='../' title='Home'>
                         <img src={Logo} alt='Logo' />
                     </Link>
                 </div>

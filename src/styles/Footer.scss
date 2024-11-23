@@ -9,6 +9,11 @@ $Tenor-family: "Tenor sans", sans-serif;
 $Arimo-family: "Arimo", sans-serif;
 $text-clr: #141414;
 
+.footer {
+  border-top: 1px solid $text-clr;
+  padding-top: 32px;
+}
+
 .footer__container {
   text-align: center;
   padding: 20px 0;
@@ -45,7 +50,7 @@ $text-clr: #141414;
   transition: background-color 0.3s ease;
 
   &:hover, &:focus {
-    background-color: darken($text-clr, 10%);
+    background-color: $text-clr
   }
 }
 

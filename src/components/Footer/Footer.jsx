@@ -1,8 +1,8 @@
-import VKIcon from '../assets/vk.svg';
-import InstagramIcon from '../assets/instagram.svg';
-import TelegramIcon from '../assets/telegram.svg';
+import VKIcon from '../../assets/vk.svg';
+import InstagramIcon from '../../assets/instagram.svg';
+import TelegramIcon from '../../assets/telegram.svg';
 
-import '../styles/Footer.scss';
+import '../../styles/Footer.scss';
 import { Link } from "react-router-dom";
 
 const Footer = () => {

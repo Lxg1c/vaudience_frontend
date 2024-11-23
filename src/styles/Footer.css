@@ -4,6 +4,11 @@
   box-sizing: border-box;
 }
 
+.footer {
+  border-top: 1px solid #141414;
+  padding-top: 32px;
+}
+
 .footer__container {
   text-align: center;
   padding: 20px 0;
@@ -40,7 +45,7 @@
   transition: background-color 0.3s ease;
 }
 .subscribe-button:hover, .subscribe-button:focus {
-  background-color: black;
+  background-color: #141414;
 }
 
 .footer__doc-item {

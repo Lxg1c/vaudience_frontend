@@ -1,5 +1,5 @@
-import '../styles/Sidebar.scss';
-import CloseIcon from '../assets/close-icon.svg';
+import '../../styles/Sidebar.scss';
+import CloseIcon from '../../assets/close-icon.svg';
 
 // eslint-disable-next-line react/prop-types
 const Sidebar = ({ isOpen, toggleSidebar }) => {

@@ -4,8 +4,8 @@ $item-hover-clr: #f9f9f9;
 .sidebar {
   position: fixed;
   top: 0;
-  right: -300px; /* Скрываем боковое меню за пределами экрана */
-  width: 300px;
+  right: -400px; /* Скрываем боковое меню за пределами экрана */
+  width: 400px;
   height: 100%;
   background-color: $sidebar-bg-clr;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -20,16 +20,16 @@ $item-hover-clr: #f9f9f9;
   &__close {
     display: flex;
     justify-content: flex-start;
-    padding: 10px;
+    padding: 5px 0 15px 10px;
     position: relative;
 
     &:after {
       content: '';
       position: absolute;
       left: -20px;
-      bottom: -55%;
+      bottom: -15%;
       width: 115%;
-      height: 1px;
+      height: 2px;
       background-color: $item-hover-clr;
     }
 

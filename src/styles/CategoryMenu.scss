@@ -1,0 +1,36 @@
+$Fahkwang-family: 'Fahkwang', sans-serif;
+$text-color: #141414;
+$hover-text-color: #fff;
+$border-clr: #9d9d9d;
+
+.category {
+  margin-top: 10px;
+  border-bottom: 1px solid $border-clr;
+  border-top: 1px solid $border-clr;
+
+  &__container-list {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    &--item button {
+      background: transparent;
+      font-family: $Fahkwang-family;
+      font-size: 20px;
+      font-weight: 300;
+      line-height: 25px;
+      color: $text-color;
+      padding: 10px 5px;
+
+      &:hover, &:focus {
+        color: $hover-text-color;
+        background-color: $text-color;
+      }
+    }
+  }
+}
+
+.active button {
+  color: $hover-text-color;
+  background-color: $text-color;
+}

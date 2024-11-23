@@ -1,0 +1,57 @@
+$Fahkwang-family: 'Fahkwang', sans-serif;
+$text-color: #141414;
+$hover-text-color: #fff;
+
+.login {
+  height: 100%;
+
+  &__title {
+    font-family: $Fahkwang-family;
+    font-weight: 800;
+    font-size: 90px;
+    line-height: 100px;
+    color: $text-color;
+    margin-bottom: 40px;
+  }
+
+  &__container,
+  &__form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    max-width: 700px;
+    width: 100%;
+
+    &-input {
+      font-family: $Fahkwang-family;
+      font-weight: 400;
+      font-size: 30px;
+      line-height: 40px;
+      letter-spacing: 3px;
+      color: $text-color;
+      border-bottom: 2px solid $text-color;
+      padding: 8px 4px;
+      width: 100%;
+      margin-top: 40px;
+    }
+
+    &-btn {
+      color: #000;
+      font-family: $Fahkwang-family;
+      font-weight: 400;
+      font-size: 40px;
+      line-height: 50px;
+      border: 1px solid $text-color;
+      width: 100%;
+      margin-top: 40px;
+      padding: 15px 100px;
+      background: transparent;
+
+      &:hover {
+        background: $text-color;
+        color: $hover-text-color;
+      }
+    }
+  }
+}
