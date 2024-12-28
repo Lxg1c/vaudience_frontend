@@ -1,0 +1,56 @@
+@charset "UTF-8";
+.sidebar {
+  position: fixed;
+  top: 0;
+  right: -400px; /* Скрываем боковое меню за пределами экрана */
+  width: 400px;
+  height: 100%;
+  background-color: #141414;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  transition: right 0.3s ease-in-out;
+  z-index: 1000;
+  padding: 20px;
+}
+.sidebar--open {
+  right: 0; /* Показываем боковое меню */
+}
+.sidebar__close {
+  display: flex;
+  justify-content: flex-start;
+  padding: 5px 0 15px 10px;
+  position: relative;
+}
+.sidebar__close:after {
+  content: "";
+  position: absolute;
+  left: -20px;
+  bottom: -15%;
+  width: 115%;
+  height: 2px;
+  background-color: #f9f9f9;
+}
+.sidebar__close-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+.sidebar__list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.sidebar__list-item {
+  padding: 15px;
+  margin-top: 40px;
+  cursor: pointer;
+  text-align: center;
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 26px;
+}
+.sidebar__list-item:hover {
+  background-color: #f9f9f9;
+  color: #141414;
+}
+
+/*# sourceMappingURL=Sidebar.css.map */

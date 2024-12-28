@@ -3,8 +3,8 @@ import { useGetProductQuery } from "../../api.js";
 import '../../styles/ProductCard.scss';
 import backArrow from '../../assets/backArrow.svg';
 import { useState } from "react";
-import { useDispatch } from "react-redux";
-import { addItemToCart } from "../../reducers/userReducer.js";
+import {useDispatch, useSelector} from "react-redux";
+import {addItemToCart} from "../../reducers/userReducer.js";
 
 const ProductCard = () => {
     const dispatch = useDispatch();
@@ -12,17 +12,25 @@ const ProductCard = () => {
     const navigate = useNavigate();
     const [productCount, setProductCount] = useState(1);
     const [selectedSize, setSelectedSize] = useState('');
-    console.log(selectedSize)
 
     const { data, error, isLoading } = useGetProductQuery({ id });
+
+    const { currentUser} = useSelector(({ user}) => user)
+
+    const handleClick = () => {
+        if (!currentUser) navigate('/register')
+        else handleAddToCart()
+    }
 
     if (isLoading) return <div>Loading...</div>;
     if (error) return <div>Error: {error.message || 'Something went wrong'}</div>;
     if (!data) return <div>No product found</div>;
 
-    const { name, img, sizes, price, description } = data;
-    const characteristics = description.split('\n');
-    const sizesList = sizes.split("/");
+    const name = data.product_name
+    const img = data.image_url
+    const sizesList = data.product_sizes.split('/')
+    const price = data.product_price.toLocaleString().replace(/,/g, " ");
+    const description = data.product_description.split('\n')
 
     const handleGoBack = () => navigate(-1);
     const handleAddCount = () => setProductCount(prevCount => prevCount + 1);
@@ -72,14 +80,15 @@ const ProductCard = () => {
                             </div>
 
                             <div className='productCard__info-buy'>
-                                <button className='productCard__info-buy--btn' onClick={handleAddToCart}>To Cart</button>
+                                <button className='productCard__info-buy--btn' onClick={handleClick}>To Cart</button>
                             </div>
                         </div>
 
                         <h2 className='productCard__info-subtitle'>{name}</h2>
 
                         <ul className='productCard__info-description'>
-                            {characteristics.map((item, index) => (
+                            {/*{description}*/}
+                            {description.map((item, index) => (
                                 <li className="productCard__info-description-item" key={index}>{item}</li>
                             ))}
                         </ul>

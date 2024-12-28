@@ -24,7 +24,7 @@ const Home = () => {
                         {productList && productList.length > 0 ? (
                             <Products productList={productList} />
                         ) : (
-                            <div className='home__catalog-title'>No products available</div>
+                            <div className='home__catalog-title' style={{margin: '100px 0'}}>No products available</div>
                         )}
                     </div>
                 </div>

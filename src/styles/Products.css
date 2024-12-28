@@ -1,0 +1,47 @@
+.products__container {
+  display: flex;
+  flex-wrap: wrap;
+}
+.products__item {
+  width: 292px;
+  height: 100%;
+  border: 1px solid #141414;
+  padding: 10px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.products__img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+.products__wrapper {
+  margin-top: 10px;
+}
+.products__wrapper-name, .products__wrapper-del_time, .products__wrapper-price {
+  text-align: center;
+  color: #141414;
+  font-family: "Fankwang", sans-serif;
+  margin: 5px 0;
+}
+.products__wrapper-name {
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 24px;
+}
+.products__wrapper-price {
+  font-weight: 500;
+  font-size: 40px;
+  line-height: 50px;
+}
+.products__wrapper-del_time {
+  font-family: "Tenor Sans", sans-serif;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 24px;
+  margin-top: 10px;
+}
+
+/*# sourceMappingURL=Products.css.map */

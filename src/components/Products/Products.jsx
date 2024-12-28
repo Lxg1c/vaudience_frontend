@@ -13,16 +13,16 @@ const Products = ({ productList }) => {
                 {productList.map((product) => (
                     <Link to={`/products/${product.id}`} key={product.id} className='product__link'>
                         <div className='products__item'>
-                            <img className='products__img' src={product.img} alt={product.name} />
+                            <img className='products__img' src={product.image_url} alt={product.name} />
                             <div className='products__wrapper'>
                                 <div className='products__wrapper-name'>
-                                    <h3>{product.name}</h3>
+                                    <h3>{product.product_name}</h3>
                                 </div>
-                                <div className='products__wrapper-del_time'>
-                                    {product.del_time === "Предзаказ" ? "Предзаказ" : `Отправка: ${product.del_time} дней`}
-                                </div>
+                                {/*<div className='products__wrapper-del_time'>*/}
+                                {/*    {product.del_time === "Предзаказ" ? "Предзаказ" : `Отправка: ${product.del_time} дней`}*/}
+                                {/*</div>*/}
                                 <div className='products__wrapper-price'>
-                                    {product.price} ₽
+                                    {product.product_price} ₽
                                 </div>
                             </div>
                         </div>

@@ -1,0 +1,133 @@
+html,
+body {
+  height: 100vh;
+}
+
+body {
+  padding: 30px 0;
+}
+
+.productCard__image {
+  object-fit: cover;
+  height: auto;
+  width: 1000px;
+}
+.productCard__back-btn {
+  position: absolute;
+  top: 15%;
+  left: 0;
+  background-color: transparent;
+}
+.productCard__container-main {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 125px;
+  position: relative;
+  height: 100vh;
+}
+.productCard__info-title, .productCard__info-price, .productCard__info-size, .productCard__info-size--btn, .productCard__info-subtitle {
+  color: #141414;
+  font-family: "Fahkwang", sans-serif;
+}
+.productCard__info-title {
+  font-weight: 700;
+  font-size: 40px;
+  line-height: 52px;
+}
+.productCard__info-subtitle {
+  margin: 20px 0;
+  font-weight: 600;
+  font-size: 30px;
+  line-height: 35px;
+}
+.productCard__info-price {
+  font-weight: 500;
+  font-size: 40px;
+  line-height: 52px;
+  margin-top: 20px;
+}
+.productCard__info-size {
+  font-family: "Tenor Sans", sans-serif;
+  font-weight: 400;
+  font-size: 25px;
+  line-height: 30px;
+  margin: 20px 0 5px;
+}
+.productCard__info-size--btn {
+  font-family: "Fahkwang", sans-serif;
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 30px;
+  background-color: #d8d8d8;
+  border: 1.5px solid transparent;
+  padding: 5px 65px 5px 5px;
+  border-radius: 5px;
+}
+.productCard__info-size--btn:hover {
+  border: 1.5px solid #141414;
+  background-color: #adadad;
+}
+.productCard__info-size--list {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+.productCard__info-count {
+  font-family: "Fahkwang", sans-serif;
+  font-weight: 300;
+  font-size: 40px;
+  line-height: 50px;
+  position: relative;
+  max-width: 125px;
+  width: 100%;
+  border: 1.5px solid #141414;
+  text-align: center;
+}
+.productCard__info-count span {
+  margin: 0 20px;
+}
+.productCard__info-count--minus, .productCard__info-count--plus {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.productCard__info-count--minus {
+  left: 5px;
+}
+.productCard__info-count--plus {
+  right: 5px;
+}
+.productCard__info-buy--btn {
+  font-family: "Fahkwang", sans-serif;
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 30px;
+  background-color: #d8d8d8;
+  border: 3px solid #141414;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.productCard__info-buy--btn:hover {
+  background-color: #adadad;
+}
+.productCard__info-description {
+  margin-top: 20px;
+  list-style-type: none;
+  padding: 0;
+}
+.productCard__info-description-item {
+  font-family: "Tenor Sans", sans-serif;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 25px;
+  margin-bottom: 10px;
+}
+
+.selected {
+  border: 1.5px solid #141414;
+  background-color: #adadad;
+}
+
+/*# sourceMappingURL=ProductCard.css.map */

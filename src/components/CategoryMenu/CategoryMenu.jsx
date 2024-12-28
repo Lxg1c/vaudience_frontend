@@ -21,7 +21,6 @@ const CategoryMenu = () => {
         dispatch(resetFilter());
         setActiveCategory(null);
     }
-
     return (
         <div className="category">
             <div className='category__container container'>
@@ -35,7 +34,7 @@ const CategoryMenu = () => {
                             className={`category__container-list--item ${activeCategory === category.id ? 'active' : ''}`}
                             onClick={() => handleCategoryClick(category.id)}
                         >
-                            <button className='btn-reset'>{category.name}</button>
+                            <button className='btn-reset'>{category.category_name}</button>
                         </li>
                     ))}
                 </ul>
