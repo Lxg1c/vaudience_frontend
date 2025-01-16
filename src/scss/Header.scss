@@ -5,6 +5,7 @@ $Play-family: 'Play', sans-serif;
 $burger-line-width: 35px;
 $burger-line-height: 2px;
 $burger-line-gap: 12px;
+$btn-txt-clr: #ffffff;
 
 .header {
   background-color: $bg-color;
@@ -20,6 +21,11 @@ $burger-line-gap: 12px;
     display: flex;
     align-items: center;
     justify-content: space-between;
+  }
+
+  &__login-btn {
+    color: $btn-txt-clr;
+    background: transparent;
   }
 
   &__container-bash {
@@ -44,7 +50,12 @@ $burger-line-gap: 12px;
     line-height: 23px;
     letter-spacing: 2px;
     position: absolute;
-    left: -450%;
+    right: 150%;
+
+    &--nickname {
+      background: $bg-color;
+      color: $text-color;
+    }
   }
 
   &__container-info {
@@ -86,8 +97,6 @@ $burger-line-gap: 12px;
     margin: 0 auto; // Центрируем логотип
   }
 }
-
-// Добавляем отступ сверху, чтобы контент не перекрывался фиксированным header
 body {
   padding-top: 70px; // Высота header + padding
 }

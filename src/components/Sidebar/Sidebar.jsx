@@ -1,4 +1,4 @@
-import '../../styles/Sidebar.scss';
+import '../../scss/Sidebar.scss';
 import CloseIcon from '../../assets/close-icon.svg';
 
 // eslint-disable-next-line react/prop-types

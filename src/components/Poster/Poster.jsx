@@ -1,4 +1,4 @@
-import '../../styles/Poster.scss'
+import '../../scss/Poster.scss'
 
 const Poster = () => {
     return(

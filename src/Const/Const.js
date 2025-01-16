@@ -1,6 +1,6 @@
 import axios from "axios";
 
-export const BASE_URL_API = ' http://localhost:8000'
+export const BASE_URL_API = 'https://fakestoreapi.com'
 
 export const ROUTES = {
     CART: '/cart',

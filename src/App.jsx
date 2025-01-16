@@ -1,4 +1,4 @@
-import './styles/App.scss';
+import './scss/App.scss';
 import AppRoutes from "./components/Routes/Routes.jsx";
 import { useDispatch } from "react-redux";
 import { getCategories } from "./thunks/categoryThunk.js";

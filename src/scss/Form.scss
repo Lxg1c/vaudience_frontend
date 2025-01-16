@@ -2,8 +2,9 @@ $Fahkwang-family: 'Fahkwang', sans-serif;
 $text-color: #141414;
 $hover-text-color: #fff;
 
-.login {
+.form {
   height: 100%;
+  margin: 100px 0;
 
   &__title {
     font-family: $Fahkwang-family;
@@ -22,6 +23,21 @@ $hover-text-color: #fff;
     justify-content: center;
     max-width: 700px;
     width: 100%;
+
+    &-links {
+      margin-top: 15px;
+      display: flex;
+      gap: 5px;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+
+      &--link {
+        font-family: $Fahkwang-family;
+        color: $text-color;
+        font-size: 16px;
+      }
+    }
 
     &-input {
       font-family: $Fahkwang-family;
@@ -53,5 +69,9 @@ $hover-text-color: #fff;
         color: $hover-text-color;
       }
     }
+  }
+
+  &__form {
+    align-items: flex-start;
   }
 }

@@ -1,4 +1,4 @@
-import '../../styles/CategoryMenu.scss';
+import '../../scss/CategoryMenu.scss';
 import { useDispatch, useSelector } from 'react-redux';
 import { filterByCategory, resetFilter } from '../../reducers/productReducer.js';
 import { useEffect, useState } from 'react';
@@ -28,13 +28,13 @@ const CategoryMenu = () => {
                     <li className={`category__container-list--item ${activeCategory === null ? 'active' : ''}`}>
                         <button onClick={handleClearFilter} className='btn-reset'>ALL</button>
                     </li>
-                    {categories.map(category => (
+                    {categories.map((category, index) => (
                         <li
-                            key={category.id}
-                            className={`category__container-list--item ${activeCategory === category.id ? 'active' : ''}`}
-                            onClick={() => handleCategoryClick(category.id)}
+                            key={index} // Используем индекс как ключ
+                            className={`category__container-list--item ${activeCategory === index ? 'active' : ''}`}
+                            onClick={() => handleCategoryClick(index)}
                         >
-                            <button className='btn-reset'>{category.category_name}</button>
+                            <button className='btn-reset'>{category.toUpperCase()}</button>
                         </li>
                     ))}
                 </ul>

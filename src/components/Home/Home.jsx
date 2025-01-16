@@ -1,4 +1,4 @@
-import '../../styles/Home.scss';
+import '../../scss/Home.scss';
 import Products from "../Products/Products.jsx";
 import Poster from "../Poster/Poster.jsx";
 import { useSelector} from "react-redux";
@@ -30,7 +30,6 @@ const Home = () => {
                 </div>
             </section>
 
-            <Footer/>
         </>
     );
 };

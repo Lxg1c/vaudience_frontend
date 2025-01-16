@@ -1,14 +1,15 @@
 import { createSlice } from "@reduxjs/toolkit";
-import {aboutUser, createUser, loginUser} from "../thunks/userThunk";
+import { createUser, loginUser, aboutUser } from "../thunks/userThunk.js"
 
 const userSlice = createSlice({
     name: "user",
     initialState: {
-        currentUser: {},
+        currentUser: null,
         cart: [],
         status: 'idle',
         error: null,
         isLoading: false,
+        auth_tokens: null
     },
     reducers: {
         addItemToCart: (state, action) => {
@@ -27,6 +28,10 @@ const userSlice = createSlice({
 
             state.cart = newCart;
         },
+        logoutUser: (state) => {
+            state.currentUser = null;
+            state.cart = [];
+        },
     },
 
     extraReducers: (builder) => {
@@ -36,17 +41,22 @@ const userSlice = createSlice({
                 state.status = 'succeeded';
                 state.haveToken = true;
             })
-            .addCase(loginUser.fulfilled, (state) => {
+            .addCase(loginUser.fulfilled, (state, action) => {
                 state.isLoading = false;
                 state.status = 'succeeded';
+                state.auth_tokens = action.payload;
             })
-            .addCase(aboutUser.fulfilled, (state, { paylaod } ) => {
+            .addCase(loginUser.rejected, (state, action) => {
                 state.isLoading = false;
-                state.status = 'succeeded';
-                state.currentUser = paylaod;
+                state.status = 'failed';
+                state.error = action.error.message;
+            })
+            .addCase(aboutUser.fulfilled, (state, action) => {
+                state.isLoading = false;
+                state.currentUser = action.payload;
             })
     }
 });
 
-export const { addItemToCart } = userSlice.actions;
+export const { addItemToCart, logoutUser} = userSlice.actions;
 export default userSlice.reducer;

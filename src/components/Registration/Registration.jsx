@@ -1,8 +1,8 @@
-import '../../styles/Registration.scss';
+import '../../scss/Form.scss';
 import { useDispatch } from "react-redux";
 import { useState } from "react";
-import { createUser } from "../../thunks/userThunk.js";
-import {useNavigate} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
+import {createUser} from "../../thunks/userThunk.js";
 
 const Registration = () => {
     const navigate = useNavigate();
@@ -33,24 +33,20 @@ const Registration = () => {
             return;
         }
 
-        dispatch(createUser({
-            nickname: values.nickname,
-            password: values.password,
-            email: values.email,
-        }));
+        dispatch(createUser(values));
 
         navigate('../login')
 
     };
 
     return (
-        <div className="registration">
-            <div className="registration__container container">
-                <h1 className="registration__title">VAUDIENCE</h1>
+        <div className="form">
+            <div className="form__container container">
+                <h1 className="form__title">VAUDIENCE</h1>
 
-                <form className="registration__form" onSubmit={handleSubmit}>
+                <form className="form__form" onSubmit={handleSubmit}>
                     <input
-                        className='registration__form-input'
+                        className='form__form-input'
                         name="nickname"
                         required={true}
                         onChange={handleChange}
@@ -59,7 +55,7 @@ const Registration = () => {
                     />
 
                     <input
-                        className='registration__form-input'
+                        className='form__form-input'
                         name="password"
                         required={true}
                         onChange={handleChange}
@@ -68,7 +64,7 @@ const Registration = () => {
                     />
 
                     <input
-                        className='registration__form-input'
+                        className='form__form-input'
                         name="email"
                         required={true}
                         onChange={handleChange}
@@ -76,7 +72,11 @@ const Registration = () => {
                         placeholder='e-mail'
                     />
 
-                    <button type='submit' className='btn-reset registration__form-btn'>Register</button>
+                    <button type='submit' className='btn-reset form__form-btn'>Register</button>
+
+                    <div className='form__form-links'>
+                        <Link to="../register" className="to_register form__form-links--link">Login</Link>
+                    </div>
                 </form>
             </div>
         </div>

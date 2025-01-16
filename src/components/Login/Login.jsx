@@ -1,8 +1,8 @@
-import '../../styles/Login.scss';
+import '../../scss/Form.scss';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import {useNavigate} from "react-router-dom";
-import {aboutUser, loginUser} from "../../thunks/userThunk.js";
+import {Link, useNavigate} from "react-router-dom";
+import {loginUser} from "../../thunks/userThunk.js";
 
 const Login = () => {
     const navigate = useNavigate();
@@ -28,24 +28,19 @@ const Login = () => {
             return;
         }
 
-        dispatch(loginUser({
-            email: values.email,
-            password: values.password,
-        }))
-
-        dispatch(aboutUser())
+        dispatch(loginUser(values))
 
         navigate('../')
     };
 
     return (
-        <div className="login">
-            <div className="login__container container">
-                <h1 className="login__title">VAUDIENCE</h1>
+        <div className="form">
+            <div className="form__container container">
+                <h1 className="form__title">VAUDIENCE</h1>
 
-                <form className="login__form" onSubmit={handleSubmit}>
+                <form className="form__form" onSubmit={handleSubmit}>
                     <input
-                        className='login__form-input'
+                        className='form__form-input'
                         name="email"
                         required
                         onChange={handleChange}
@@ -54,7 +49,7 @@ const Login = () => {
                     />
 
                     <input
-                        className='login__form-input'
+                        className='form__form-input'
                         name="password"
                         required
                         onChange={handleChange}
@@ -62,7 +57,17 @@ const Login = () => {
                         placeholder='password'
                     />
 
-                    <button type='submit' className='btn-reset login__form-btn'>Enter</button>
+                    <label className='form__form-label'>
+                        <input type="checkbox" className="form__form-checkbox"/>
+                        <span>Remember me</span>
+                    </label>
+
+                    <button type='submit' className='btn-reset form__form-btn'>Enter</button>
+
+                    <div className='form__form-links'>
+                        <Link to="../register" className="to_register form__form-links--link">Register</Link>
+                        <Link to="" className="reset_password form__form-links--link">Forget password?</Link>
+                    </div>
                 </form>
             </div>
         </div>
