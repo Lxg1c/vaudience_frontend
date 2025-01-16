@@ -1,11 +1,13 @@
 import '../../scss/Header.scss';
-import BashIcon from '../../assets/bash-icon.svg';
-import Logo from '../../assets/logo.svg';
+import Bash from '../../assets/bash.svg';
 import { Link } from 'react-router-dom';
-import { useEffect, useState } from 'react';
-import Sidebar from '../Sidebar/Sidebar.jsx';
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import { aboutUser } from "../../thunks/userThunk.js";
+import { Dropdown, Container, Nav, Navbar } from 'react-bootstrap';
+import UserIcon from '../../assets/user.svg';
+import Logo from '../../assets/logo.svg';
+import Bookmark from '../../assets/bookmark.svg';
 
 const Header = () => {
     const dispatch = useDispatch();
@@ -13,65 +15,85 @@ const Header = () => {
     useEffect(() => {
         const accessToken = localStorage.getItem("access_token");
         if (accessToken) {
-            dispatch(aboutUser(accessToken))
-                .unwrap()
-                .catch((error) => {
-                    console.error("Ошибка при получении данных пользователя:", error);
-                });
+            dispatch(aboutUser())
         }
     }, [dispatch]);
 
     const { currentUser } = useSelector(state => state.user);
-    const [isSidebarOpen, setIsSidebarOpen] = useState(false);
     const cartCount = useSelector((state) => state.user.cart?.length || 0);
 
-    const toggleBurgerMenu = () => {
-        setIsSidebarOpen(!isSidebarOpen);
-    };
+    const loginOut = () => {
+        localStorage.removeItem("access_token");
+        localStorage.removeItem("refresh_token");
+        window.location.reload();
+    }
 
     return (
         <header className='header'>
             <div className='header__container container'>
-                <div className='header__container-bash'>
-                    <Link to='/bash' title='Корзина'>
-                        <img src={BashIcon} alt='Bash Icon' />
-                        <div className='header__container-bash--counter'>{cartCount}</div>
-                    </Link>
+                {/* Левая часть: меню */}
+                <div className='header__menu'>
+                    <Navbar bg="dark" data-bs-theme="dark">
+                        <Container>
+                            <Nav className="me-auto">
+                                <Nav.Link href="#home">НОВИНКИ</Nav.Link>
+                                <Nav.Link href="#features">ОДЕЖДА</Nav.Link>
+                                <Nav.Link href="#pricing">АКСЕССУАРЫ</Nav.Link>
+                                <Nav.Link href="#pricing">О НАС</Nav.Link>
+                            </Nav>
+                        </Container>
+                    </Navbar>
                 </div>
 
-                <div className='header__container-logo'>
+                {/* Центральная часть: логотип */}
+                <div className='header__logo'>
                     <Link to='/' title='Home'>
-                        <img src={Logo} alt='Logo' />
+                        <img src={Logo} alt='logo'/>
                     </Link>
                 </div>
 
-                <div className='header__container-info'>
-                    <div className='header__container-user'>
-                        {currentUser && Object.keys(currentUser).length > 0 ? (
-                            <div className="dropdown">
-                                <button className="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false">
-                                    {currentUser.name}
-                                </button>
-                                <ul className="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuButton2">
-                                    <li><a className="dropdown-item active" href="#">Profile</a></li>
-                                    <li><a className="dropdown-item" href="#">Exit</a></li>
-                                </ul>
-                            </div>
-                        ) : (
-                            <Link to='/login' title='Login'>
-                                <button className='btn-reset header__login-btn'>Sign Up</button>
-                            </Link>
-                        )}
+                {/* Правая часть: блок пользователя */}
+                <div className='header__user'>
+                    {/* Пользователь */}
+                    {currentUser && Object.keys(currentUser).length > 0 ? (
+                        <Dropdown>
+                            <Dropdown.Toggle
+                                variant="success"
+                                id="dropdown-basic"
+                                title="Dark dropdown"
+                                data-bs-theme="dark">
+                                <img src={UserIcon} className='header__user-icon' alt='User'/>
+                            </Dropdown.Toggle>
+
+                            <Dropdown.Menu>
+                                <Dropdown.Item href="#/action-1">Profile</Dropdown.Item>
+                                <Dropdown.Item href="#/action-2" onClick={loginOut}>Exit</Dropdown.Item>
+                            </Dropdown.Menu>
+                        </Dropdown>
+                    ) : (
+                        <Link to='/login' title='Login'>
+                            <button className='btn-reset header__user-btn'>
+                                <img src={UserIcon} className='header__user-icon' alt='User'/>
+                            </button>
+                        </Link>
+                    )}
+
+                    {/* Закладки */}
+                    <div className='header__bookmark'>
+                        <Link to='/bookmark'>
+                            <img src={Bookmark} alt='bookmark'/>
+                        </Link>
                     </div>
 
-                    <div onClick={toggleBurgerMenu} className='header__container-burger' aria-label='Menu'>
-                        <span className='burger-line'></span>
-                        <span className='burger-line'></span>
-                        <span className='burger-line'></span>
+                    {/* Корзина */}
+                    <div className='header__bash'>
+                        <Link to='/bash' title='Корзина'>
+                            <img src={Bash} alt='Bash Icon'/>
+                            <div className='header__bash-counter'>{cartCount}</div>
+                        </Link>
                     </div>
                 </div>
             </div>
-            <Sidebar isOpen={isSidebarOpen} toggleSidebar={toggleBurgerMenu} />
         </header>
     );
 }

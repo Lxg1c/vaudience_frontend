@@ -1,5 +1,6 @@
-$bg-color: #141414;
-$text-color: #fff;
+$primary-color: #212529;
+$secondary-color: #fff;
+$black-clr: #000000;
 $Arimo-family: 'Arimo', sans-serif;
 $Play-family: 'Play', sans-serif;
 $burger-line-width: 35px;
@@ -8,95 +9,78 @@ $burger-line-gap: 12px;
 $btn-txt-clr: #ffffff;
 
 .header {
-  background-color: $bg-color;
-  color: $text-color;
+  background-color: $primary-color;
+  color: $secondary-color;
   padding: 10px 0;
-  position: fixed; // Фиксируем header
-  top: 0; // Прижимаем к верху страницы
+  position: fixed;
+  top: 0;
   left: 0;
-  right: 0; // Растягиваем на всю ширину
-  z-index: 1000; // Устанавливаем z-index, чтобы header был над остальным контентом
+  right: 0;
+  z-index: 1000;
 
   &__container {
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: space-between; // Распределяет пространство между элементами
   }
 
-  &__login-btn {
-    color: $btn-txt-clr;
-    background: transparent;
-  }
-
-  &__container-bash {
-    position: relative;
-
-    &--counter {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      font-family: $Play-family;
-      font-size: 26px;
-      line-height: 30px;
-      color: $text-color;
-    }
-  }
-
-  &__container-user {
-    font-family: $Arimo-family;
-    font-size: 20px;
-    font-weight: 400;
-    line-height: 23px;
-    letter-spacing: 2px;
-    position: absolute;
-    right: 150%;
-
-    &--nickname {
-      background: $bg-color;
-      color: $text-color;
-    }
-  }
-
-  &__container-info {
+  &__menu {
+    flex: 1; // Занимает доступное пространство слева
     display: flex;
-    align-items: center;
-    gap: 20px;
-    position: relative;
+    justify-content: flex-start; // Выравнивает меню по левому краю
   }
 
-  &__container-burger {
-    position: relative;
-    width: $burger-line-width;
-    height: calc(#{$burger-line-height} * 3 + #{$burger-line-gap});
-    cursor: pointer;
+  &__logo {
+    flex: 0 0 auto; // Логотип не растягивается и не сжимается
+    margin: 0 20px; // Отступы для логотипа
+  }
 
-    .burger-line {
-      position: absolute;
-      width: $burger-line-width;
-      height: $burger-line-height;
-      background-color: $text-color;
-      transition: all 0.3s ease;
+  &__user {
+    flex: 1; // Занимает доступное пространство справа
+    display: flex;
+    justify-content: flex-end; // Выравнивает блок пользователя по правому краю
+    gap: 30px;
 
-      &:nth-child(1) {
-        top: 0;
-      }
-
-      &:nth-child(2) {
-        top: 50%;
-        transform: translateY(-50%);
-      }
-
-      &:nth-child(3) {
-        bottom: 0;
-      }
+    &-icon {
+      background-color: $primary-color;
     }
   }
 
-  &__container-logo {
-    margin: 0 auto; // Центрируем логотип
+  &__bash {
+    position: relative;
+
+    &-counter {
+      background: $black-clr;
+      padding: 1px 5px;
+      border-radius: 30px;
+      position: absolute;
+      bottom: -5%;
+      right: 0;
+      transform: translate(0%, 5%);
+      color: $secondary-color;
+      font: {
+        size: 12px;
+        weight: 600;
+        family: $Arimo-family;
+      }
+    }
   }
 }
-body {
-  padding-top: 70px; // Высота header + padding
+
+.menu {
+  &__list {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin: 0;
+    padding: 0;
+  }
+
+  &-item {
+    font: {
+      size: 20px;
+      family: $Arimo-family;
+    };
+  }
 }
