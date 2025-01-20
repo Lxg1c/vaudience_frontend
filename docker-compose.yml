@@ -1,0 +1,14 @@
+version: '3.8'
+
+services:
+  frontend:
+    container_name: vaudience_store
+
+    build:
+      context: .
+      dockerfile: Dockerfile
+
+    ports:
+      - '80:80'
+
+    restart: always
