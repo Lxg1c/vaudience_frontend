@@ -1,6 +1,6 @@
 import { Routes, Route } from "react-router-dom";
 import Home from "../Home/Home.jsx";
-import Cart from "../Bash/Cart.jsx";
+import Cart from "../Cart/Cart.jsx";
 import Registration from "../Registration/Registration.jsx";
 import Login from "../Login/Login.jsx";
 import { ROUTES } from "../../Const/Const.js";

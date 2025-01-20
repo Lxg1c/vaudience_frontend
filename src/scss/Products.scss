@@ -1,37 +1,52 @@
 $Fahkwang-family: 'Fankwang', sans-serif;
 $Tenor-family: 'Tenor Sans', sans-serif;
 $text-color: #141414;
+$img-bg: #f2f2f2;
 
 // Products.scss
 .products {
+  &__pagination {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+
   &__container {
     display: flex;
     flex-wrap: wrap;
   }
 
+  &__title {
+    font: {
+      size: 20px;
+      family: $Fahkwang-family;
+      weight: 600;
+    }
+  }
+
   &__item {
-    width: 258px;
-    height: 100%;
-    border: 1px solid $text-color;
-    padding: 10px;
-    box-sizing: border-box;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
     align-items: center;
+    justify-content: space-between;
+    width: 430px;
+    height: 100%;
+    padding: 10px;
+    box-sizing: border-box;
   }
 
   &__img {
-    width: 100%;
+    width: 430px;
     height: auto;
     display: block;
+    padding: 20px;
+    background-color: $img-bg;
   }
 
   &__wrapper {
     margin-top: 10px;
 
     &-name,
-    &-del_time,
     &-price {
       text-align: center;
       color: $text-color;
@@ -40,7 +55,7 @@ $text-color: #141414;
     }
 
     &-name {
-      font-size: 24px;
+      font-size: 16px;
       font-weight: 400;
       line-height: 24px;
     }
@@ -49,14 +64,6 @@ $text-color: #141414;
       font-weight: 500;
       font-size: 40px;
       line-height: 50px;
-    }
-
-    &-del_time {
-      font-family: $Tenor-family;
-      font-weight: 400;
-      font-size: 18px;
-      line-height: 24px;
-      margin-top: 10px;
     }
   }
 }

@@ -3,7 +3,31 @@
   padding: 0 1rem;
 }
 
-/* make the customizations */
 
+// Импорт Bootstrap
+@import "../../node_modules/bootstrap/scss/bootstrap";
 
-@import 'node_modules/bootstrap/scss/bootstrap';
+// Переопределение глобальных стилей для всех кнопок
+.btn {
+  background-color: transparent;
+  border-color: transparent;
+  padding: 0;
+  transition: 0.5s ease-in-out;
+
+  &:hover {
+    background-color: rgb(139, 185, 254);
+  }
+
+  &:after {
+    content: none;
+  }
+}
+
+.form-floating {
+  width: 100%;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+}

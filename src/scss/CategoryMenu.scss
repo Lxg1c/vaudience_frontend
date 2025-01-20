@@ -1,36 +1,36 @@
 $Fahkwang-family: 'Fahkwang', sans-serif;
-$text-color: #141414;
-$hover-text-color: #fff;
-$border-clr: #9d9d9d;
+$text-clr: #212529;
+$text-bg-clr: #ffffff8c;
+$active-text-clr: #ffffff;
+$active-bg-clr: #141414;
+$hover-bg-clr: #f2f2f2;
+$hover-text-clr: #000000;
 
 .category {
-  margin-top: 10px;
-  border-bottom: 1px solid $border-clr;
-  border-top: 1px solid $border-clr;
+  &__container {
+    margin-bottom: 30px;
 
-  &__container-list {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+    &-list {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 20px;
 
-    &--item button {
-      background: transparent;
-      font-family: $Fahkwang-family;
-      font-size: 20px;
-      font-weight: 300;
-      line-height: 25px;
-      color: $text-color;
-      padding: 10px 5px;
+      &--item>button {
+        background-color: $text-bg-clr;
+        padding: 10px 30px;
+        border-radius: 20px;
+        border: 1px solid transparent;
 
-      &:hover, &:focus {
-        color: $hover-text-color;
-        background-color: $text-color;
+        &:hover {
+          border: 1px solid $hover-text-clr;
+        }
       }
     }
   }
 }
 
 .active button {
-  color: $hover-text-color;
-  background-color: $text-color;
+  color: $active-text-clr;
+  background-color: $active-bg-clr;
 }

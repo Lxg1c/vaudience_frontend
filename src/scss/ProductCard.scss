@@ -3,7 +3,7 @@ $Tenor-family: 'Tenor Sans', sans-serif;
 $Arimo-family: 'Arimo', sans-serif;
 $text-color: #141414;
 $size-btn-bg: #d8d8d8;
-$dark_btn-bg: #adadad;
+$dark_btn-bg: #F8F4FF;
 
 html,
 body {
@@ -19,7 +19,7 @@ body {
   &__image {
     object-fit: cover;
     height: auto;
-    width: 1000px;
+    max-width: 600px;
   }
   &__back-btn {
     position: absolute;
@@ -45,7 +45,7 @@ body {
     &-size--btn,
     &-subtitle {
       color: $text-color;
-      font-family: $Fahkwang-family;
+      font-family: $Arimo-family;
     }
 
     &-title {
@@ -69,14 +69,14 @@ body {
     }
 
     &-size {
-      font-family: $Tenor-family;
+      font-family: $Arimo-family;
       font-weight: 400;
       font-size: 25px;
       line-height: 30px;
       margin: 20px 0 5px;
 
       &--btn {
-        font-family: $Fahkwang-family;
+        font-family: $Arimo-family;
         font-weight: 500;
         font-size: 24px;
         line-height: 30px;
@@ -84,11 +84,6 @@ body {
         border: 1.5px solid transparent;
         padding: 5px 65px 5px 5px;
         border-radius: 5px;
-
-        &:hover {
-          border: 1.5px solid $text-color;
-          background-color: $dark_btn-bg;
-        }
       }
 
       &--list {
@@ -99,7 +94,7 @@ body {
     }
 
     &-count {
-      font-family: $Fahkwang-family;
+      font-family: $Arimo-family;
       font-weight: 300;
       font-size: 40px;
       line-height: 50px;
@@ -108,7 +103,7 @@ body {
       width: 100%;
       border: 1.5px solid $text-color;
       text-align: center;
-
+      border-radius: 10px;
       span {
         margin: 0 20px;
       }
@@ -130,17 +125,20 @@ body {
     }
 
     &-buy {
+      display: flex;
+      align-items: center;
+      gap: 20px;
 
       &--btn {
-        font-family: $Fahkwang-family;
+        font-family: $Arimo-family;
         font-weight: 500;
-        font-size: 24px;
+        font-size: 32px;
         line-height: 30px;
         background-color: $size-btn-bg;
         border: 3px solid $text-color;
         padding: 10px 20px;
-        border-radius: 5px;
         cursor: pointer;
+        border-radius: 20px;
 
         &:hover {
           background-color: $dark_btn-bg;
@@ -167,4 +165,12 @@ body {
 .selected {
   border: 1.5px solid $text-color;
   background-color: $dark_btn-bg;
+}
+
+.favorite {
+  color: red; /* Изменяет и fill, и stroke, так как используется currentColor */
+}
+
+.not-favorite {
+  color: #ffffff;
 }

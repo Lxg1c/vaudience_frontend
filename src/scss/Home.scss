@@ -1,13 +1,13 @@
-$Fahkwang-family: 'Fakhwang',sans-serif;
-$Tenor-family: 'Tenor Sans', sans-serif;
+$Arimo-family: 'Arimo',sans-serif;
 $text-color: #141414;
 
 .home__catalog-title {
-  font-family: $Fahkwang-family;
+  background-color: #ffffff;
+  font-family: $Arimo-family;
   font-weight: 400;
   font-size: 80px;
   line-height: 100px;
   color: $text-color;
   text-align: center;
-  margin-top: 10px;
+  margin: 100px 0 60px;
 }

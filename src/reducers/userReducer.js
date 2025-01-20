@@ -6,6 +6,7 @@ const userSlice = createSlice({
     initialState: {
         currentUser: null,
         cart: [],
+        favorite: [],
         status: 'idle',
         error: null,
         isLoading: false,
@@ -28,9 +29,27 @@ const userSlice = createSlice({
 
             state.cart = newCart;
         },
+
         logoutUser: (state) => {
             state.currentUser = null;
             state.cart = [];
+        },
+
+        addItemToFavorite: (state, action) => {
+            let newFavorite = [...state.favorite];
+            const found = state.favorite.find((item) => item.id === action.payload.id && item.size === action.payload.size);
+
+            if (found) {
+                newFavorite = newFavorite.map((item) =>
+                    item.id === action.payload.id && item.size === action.payload.size
+                        ? { ...item, quantity: item.quantity + action.payload.quantity }
+                        : item
+                );
+            } else {
+                newFavorite.push({ ...action.payload, quantity: action.payload.quantity });
+            }
+
+            state.favorite = newFavorite;
         },
     },
 
@@ -40,6 +59,11 @@ const userSlice = createSlice({
                 state.isLoading = false;
                 state.status = 'succeeded';
                 state.haveToken = true;
+            })
+            .addCase(createUser.rejected, (state, action) => {
+                state.isLoading = false;
+                state.status = 'failed';
+                state.error = action.error.message;
             })
             .addCase(loginUser.fulfilled, (state, action) => {
                 state.isLoading = false;
@@ -55,8 +79,13 @@ const userSlice = createSlice({
                 state.isLoading = false;
                 state.currentUser = action.payload;
             })
+            .addCase(aboutUser.rejected, (state, action) => {
+                state.isLoading = false;
+                state.status = 'failed';
+                state.error = action.error.message;
+            })
     }
 });
 
-export const { addItemToCart, logoutUser} = userSlice.actions;
+export const { addItemToCart, logoutUser, addItemToFavorite} = userSlice.actions;
 export default userSlice.reducer;

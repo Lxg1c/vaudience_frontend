@@ -7,6 +7,7 @@ $burger-line-width: 35px;
 $burger-line-height: 2px;
 $burger-line-gap: 12px;
 $btn-txt-clr: #ffffff;
+$hover-color: rgb(139, 185, 254);
 
 .header {
   background-color: $primary-color;
@@ -21,24 +22,24 @@ $btn-txt-clr: #ffffff;
   &__container {
     display: flex;
     align-items: center;
-    justify-content: space-between; // Распределяет пространство между элементами
+    justify-content: space-between;
   }
 
   &__menu {
-    flex: 1; // Занимает доступное пространство слева
+    flex: 1;
     display: flex;
-    justify-content: flex-start; // Выравнивает меню по левому краю
+    justify-content: flex-start;
   }
 
   &__logo {
-    flex: 0 0 auto; // Логотип не растягивается и не сжимается
-    margin: 0 20px; // Отступы для логотипа
+    flex: 0 0 auto;
+    margin: 0 20px;
   }
 
   &__user {
-    flex: 1; // Занимает доступное пространство справа
+    flex: 1;
     display: flex;
-    justify-content: flex-end; // Выравнивает блок пользователя по правому краю
+    justify-content: flex-end;
     gap: 30px;
 
     &-icon {
@@ -46,7 +47,10 @@ $btn-txt-clr: #ffffff;
     }
   }
 
-  &__bash {
+  &__bash,
+  &__bookmark {
+    transition: 0.5s ease-in-out;
+    border-radius: 10px;
     position: relative;
 
     &-counter {
@@ -54,15 +58,19 @@ $btn-txt-clr: #ffffff;
       padding: 1px 5px;
       border-radius: 30px;
       position: absolute;
-      bottom: -5%;
+      bottom: 0;
       right: 0;
-      transform: translate(0%, 5%);
+      transform: translate(0%, 0%);
       color: $secondary-color;
       font: {
         size: 12px;
         weight: 600;
         family: $Arimo-family;
       }
+    }
+
+    &:hover {
+      background-color: $hover-color;
     }
   }
 }

@@ -12,7 +12,7 @@ const productSlice = createSlice({
     },
     reducers: {
         filterByCategory: (state, action) => {
-            state.filtered = state.list.filter(product => product.category === action.payload);
+            state.filtered = state.list.filter(product => product.category.name === action.payload);
         },
         resetFilter: (state) => {
             state.filtered = state.list;

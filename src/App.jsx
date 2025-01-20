@@ -12,7 +12,7 @@ function App() {
 
     useEffect(() => {
         dispatch(getCategories())
-        dispatch(getProducts())
+        dispatch(getProducts({ offset: 0, limit: 18 }));
     }, [dispatch])
 
     return (

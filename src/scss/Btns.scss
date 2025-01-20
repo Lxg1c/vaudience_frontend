@@ -1,0 +1,23 @@
+$Fahkwang-family: 'Fahkwang', sans-serif;
+$text-clr: #212529;
+$text-bg-clr: #ffffff8c;
+$active-text-clr: #ffffff;
+$active-bg-clr: #141414;
+$hover-bg-clr: #f2f2f2;
+$hover-text-clr: #000000;
+
+.button {
+  background-color: $text-bg-clr;
+  padding: 10px 30px;
+  border-radius: 20px;
+  border: 1px solid transparent;
+
+  &:hover {
+    border: 1px solid $hover-text-clr;
+  };
+}
+
+.active button {
+  color: $active-text-clr;
+  background-color: $active-bg-clr;
+}
