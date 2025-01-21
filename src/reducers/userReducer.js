@@ -1,9 +1,30 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { createUser, loginUser, aboutUser } from "../thunks/userThunk.js"
+import { createUser, loginUser, aboutUser } from "../thunks/userThunk.js";
+
+const loadStateFromLocalStorage = () => {
+    try {
+        const serializedState = localStorage.getItem('userState');
+        if (serializedState === null) {
+            return undefined;
+        }
+        return JSON.parse(serializedState);
+    } catch (e) {
+        return e;
+    }
+};
+
+const saveStateToLocalStorage = (state) => {
+    try {
+        const serializedState = JSON.stringify(state);
+        localStorage.setItem('userState', serializedState);
+    } catch (e) {
+        return e;
+    }
+};
 
 const userSlice = createSlice({
     name: "user",
-    initialState: {
+    initialState: loadStateFromLocalStorage() || {
         currentUser: null,
         cart: [],
         favorite: [],
@@ -28,11 +49,40 @@ const userSlice = createSlice({
             }
 
             state.cart = newCart;
+            saveStateToLocalStorage(state);
+        },
+
+        removeItemFromCart: (state, action) => {
+            state.cart = state.cart.filter(item => item.id !== action.payload.id || item.size !== action.payload.size);
+            saveStateToLocalStorage(state);
+        },
+
+        increaseQuantity: (state, action) => {
+            state.cart = state.cart.map((item) =>
+                item.id === action.payload.id && item.size === action.payload.size
+                    ? { ...item, quantity: item.quantity + 1 }
+                    : item
+            );
+            saveStateToLocalStorage(state);
+        },
+
+        decreaseQuantity: (state, action) => {
+            state.cart = state.cart.map((item) =>
+                item.id === action.payload.id && item.size === action.payload.size
+                    ? { ...item, quantity: Math.max(item.quantity - 1, 1) }
+                    : item
+            );
+            saveStateToLocalStorage(state);
         },
 
         logoutUser: (state) => {
             state.currentUser = null;
             state.cart = [];
+            state.favorite = [];
+            state.auth_tokens = null;
+            localStorage.removeItem('access_token');
+            localStorage.removeItem('refresh_token');
+            localStorage.removeItem('userState');
         },
 
         addItemToFavorite: (state, action) => {
@@ -50,6 +100,12 @@ const userSlice = createSlice({
             }
 
             state.favorite = newFavorite;
+            saveStateToLocalStorage(state);
+        },
+
+        removeItemFromFavorite: (state, action) => {
+            state.favorite = state.favorite.filter(item => item.id !== action.payload.id || item.size !== action.payload.size);
+            saveStateToLocalStorage(state);
         },
     },
 
@@ -59,6 +115,7 @@ const userSlice = createSlice({
                 state.isLoading = false;
                 state.status = 'succeeded';
                 state.haveToken = true;
+                saveStateToLocalStorage(state);
             })
             .addCase(createUser.rejected, (state, action) => {
                 state.isLoading = false;
@@ -69,6 +126,7 @@ const userSlice = createSlice({
                 state.isLoading = false;
                 state.status = 'succeeded';
                 state.auth_tokens = action.payload;
+                saveStateToLocalStorage(state);
             })
             .addCase(loginUser.rejected, (state, action) => {
                 state.isLoading = false;
@@ -78,14 +136,24 @@ const userSlice = createSlice({
             .addCase(aboutUser.fulfilled, (state, action) => {
                 state.isLoading = false;
                 state.currentUser = action.payload;
+                saveStateToLocalStorage(state);
             })
             .addCase(aboutUser.rejected, (state, action) => {
                 state.isLoading = false;
                 state.status = 'failed';
                 state.error = action.error.message;
-            })
+            });
     }
 });
 
-export const { addItemToCart, logoutUser, addItemToFavorite} = userSlice.actions;
+export const {
+    addItemToCart,
+    removeItemFromCart,
+    increaseQuantity,
+    decreaseQuantity,
+    logoutUser,
+    removeItemFromFavorite,
+    addItemToFavorite
+} = userSlice.actions;
+
 export default userSlice.reducer;

@@ -23,7 +23,7 @@ const Footer = () => {
 
     return (
         <footer className='footer'>
-            <div className='footer__container container'>
+            <div className='footer__container container' id='aboutus'>
                 <div className='footer__container-subscribe'>
                     <input className="subscribe-input" type='email' placeholder='Введите E-mail' />
                     <button className='btn-reset subscribe-button' type='submit' aria-label='Подписаться'>Подписаться</button>

@@ -14,6 +14,7 @@ $img-bg: #f2f2f2;
   &__container {
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
   }
 
   &__title {
@@ -29,14 +30,14 @@ $img-bg: #f2f2f2;
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
-    width: 430px;
+    width: 469px;
     height: 100%;
     padding: 10px;
     box-sizing: border-box;
   }
 
   &__img {
-    width: 430px;
+    width: 469px;
     height: auto;
     display: block;
     padding: 20px;

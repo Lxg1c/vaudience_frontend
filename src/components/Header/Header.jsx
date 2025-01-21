@@ -3,6 +3,7 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { aboutUser } from '../../thunks/userThunk.js';
 import { Dropdown, Container, Nav, Navbar } from 'react-bootstrap';
+import { logoutUser } from "../../reducers/userReducer.js";
 import UserIcon from '../../assets/user.svg';
 import Logo from '../../assets/logo.svg';
 import Bookmark from '../../assets/bookmark.svg';
@@ -24,9 +25,7 @@ const Header = () => {
     const bookmarkCount = useSelector(state => state.user.favorite?.length || 0);
 
     const loginOut = () => {
-        localStorage.removeItem('access_token');
-        localStorage.removeItem('refresh_token');
-        window.location.reload();
+        dispatch(logoutUser())
     };
 
     return (
@@ -38,9 +37,9 @@ const Header = () => {
                         <Container>
                             <Nav className="me-auto">
                                 <Nav.Link as={Link} to="/#news">НОВИНКИ</Nav.Link>
-                                <Nav.Link href="#features">ОДЕЖДА</Nav.Link>
-                                <Nav.Link href="#pricing">АКСЕССУАРЫ</Nav.Link>
-                                <Nav.Link href="#pricing">О НАС</Nav.Link>
+                                <Nav.Link as={Link} to="/#news">ОДЕЖДА</Nav.Link>
+                                <Nav.Link as={Link} to="/#news">АКСЕССУАРЫ</Nav.Link>
+                                <Nav.Link as={Link} to="/#aboutus">О НАС</Nav.Link>
                             </Nav>
                         </Container>
                     </Navbar>

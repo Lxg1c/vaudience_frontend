@@ -5,6 +5,7 @@ import Registration from "../Registration/Registration.jsx";
 import Login from "../Login/Login.jsx";
 import { ROUTES } from "../../Const/Const.js";
 import ProductCard from "../Products/ProductCard.jsx";
+import Favorite from "../Favorite/Favorite.jsx";
 
 const AppRoutes = () => {
     return (
@@ -18,6 +19,8 @@ const AppRoutes = () => {
             <Route path={ROUTES.REGISTER} element={<Registration />} />
 
             <Route path={ROUTES.PRODUCT} element={<ProductCard />} />
+
+            <Route path={ROUTES.FAVORITE} element={<Favorite />} />
         </Routes>
     );
 }

@@ -1,13 +1,12 @@
+// Импорт Bootstrap
+@use "../../node_modules/bootstrap/scss/bootstrap";
+
 .container {
   max-width: 1440px;
   padding: 0 1rem;
+  margin: 0 auto;
 }
 
-
-// Импорт Bootstrap
-@import "../../node_modules/bootstrap/scss/bootstrap";
-
-// Переопределение глобальных стилей для всех кнопок
 .btn {
   background-color: transparent;
   border-color: transparent;

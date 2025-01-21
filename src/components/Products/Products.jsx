@@ -1,32 +1,32 @@
 import '../../scss/Products.scss';
 import { Link } from 'react-router-dom';
-import { Pagination } from "react-bootstrap";
 import PropTypes from 'prop-types';
-import { useState } from 'react';
-import {useDispatch} from "react-redux";
-import {getProducts} from "../../thunks/productsThunk.js";
+import { useState, useEffect } from 'react';
+import { useDispatch } from "react-redux";
+import { getProducts } from "../../thunks/productsThunk.js";
+import PagePagination from "../PagePagination/PagePagination.jsx"
 
 const Products = ({ productList, isLoading }) => {
     const dispatch = useDispatch();
     const [currentPage, setCurrentPage] = useState(1);
     const itemsPerPage = 18;
 
-    // Вычисляем индексы для отображения продуктов на текущей странице
     const indexOfLastItem = currentPage * itemsPerPage;
     const indexOfFirstItem = indexOfLastItem - itemsPerPage;
     const currentItems = productList.slice(indexOfFirstItem, indexOfLastItem);
 
-    // Вычисляем количество страниц
-    const paginationLength = 10;
-    const paginationItems = Array.from({ length: paginationLength }, (_, index) => index + 1);
+    const totalPages = 6;
 
-    // Обработчик изменения страницы
-    const handlePageChange = (pageNumber) => {
+    const handlePageChange = async (pageNumber) => {
+        console.log("Page changed to:", pageNumber);
         setCurrentPage(pageNumber);
-        dispatch(getProducts({ offset: (pageNumber - 1) * itemsPerPage, limit: itemsPerPage }));
+        dispatch(getProducts({ offset: (pageNumber - 1) * itemsPerPage, limit: itemsPerPage })); // Затем выполняем запрос
     };
 
-    // Если данные загружаются, показываем прелоадер
+    useEffect(() => {
+        console.log("Current page updated:", currentPage);
+    }, [currentPage]);
+
     if (isLoading) {
         return (
             <div className="preloader-wrapper active">
@@ -70,25 +70,11 @@ const Products = ({ productList, isLoading }) => {
                     </Link>
                 ))}
                 <div className='products__pagination'>
-                    <Pagination size='lg' className='mb-3'>
-                        <Pagination.Prev
-                            onClick={() => setCurrentPage((prev) => (prev > 1 ? prev - 1 : prev))}
-                            disabled={currentPage === 1}
-                        />
-                        {paginationItems.map((page) => (
-                            <Pagination.Item
-                                key={page}
-                                active={page === currentPage}
-                                onClick={() => handlePageChange(page)}
-                            >
-                                {page}
-                            </Pagination.Item>
-                        ))}
-                        <Pagination.Next
-                            onClick={() => setCurrentPage((prev) => (prev < paginationLength ? prev + 1 : prev))}
-                            disabled={currentPage === paginationLength}
-                        />
-                    </Pagination>
+                    <PagePagination
+                        currentPage={currentPage}
+                        totalPages={totalPages}
+                        onPageChange={handlePageChange}
+                    />
                 </div>
             </div>
         </div>
