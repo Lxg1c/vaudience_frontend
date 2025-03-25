@@ -1,0 +1,24 @@
+@use '../../shared/styles/variables' as vars;
+
+.category__container {
+  margin-bottom: 30px;
+}
+
+.category__container-list {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+}
+
+.category__container-list--item > button {
+  background-color: vars.$text-bg-clr;
+  padding: 10px 30px;
+  border-radius: 20px;
+  border: 1px solid transparent;
+
+  &:hover {
+    border: 1px solid vars.$hover-text-clr;
+  }
+}
