@@ -5,16 +5,10 @@ $img-bg: #f2f2f2;
 
 // ProductList.scss
 .products {
-  &__pagination {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-  }
-
   &__container {
     display: flex;
+    gap: 15px;
     flex-wrap: wrap;
-    justify-content: center;
   }
 
   &__title {
@@ -30,15 +24,16 @@ $img-bg: #f2f2f2;
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
-    width: 469px;
+    width: 340px;
     height: 100%;
     padding: 10px;
     box-sizing: border-box;
   }
 
   &__img {
-    width: 469px;
-    height: auto;
+    width: 100%;
+    max-width: 350px;
+    height: 400px;
     display: block;
     padding: 20px;
     background-color: $img-bg;

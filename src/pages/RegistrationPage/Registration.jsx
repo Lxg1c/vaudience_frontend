@@ -29,7 +29,6 @@ const Registration = () => {
         }
 
         if (values.password.length < 8) {
-            console.log('Пароль должен быть не менее 8 символов');
             return;
         }
 

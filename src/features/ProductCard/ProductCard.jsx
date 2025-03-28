@@ -1,5 +1,6 @@
 import { useParams, useNavigate } from "react-router-dom";
-import { useGetProductQuery } from "src/enteties/product";
+import PropTypes from 'prop-types';
+import { useGetProductQuery} from "../../enteties/product/index.js";
 import './ProductCard.scss';
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -7,8 +8,6 @@ import { addItemToCart } from "../../app/store/slices/userSlice.js";
 import { Carousel, Spinner } from "react-bootstrap";
 import '../../shared/ui/Button/Button.scss';
 import { addItemToFavorite, removeItemFromFavorite } from "../../app/store/slices/userSlice.js";
-
-const SIZES = [4, 5, 8, 12];
 
 const ProductCard = () => {
     const dispatch = useDispatch();
@@ -54,8 +53,6 @@ const ProductCard = () => {
     const handleAddToCart = () => {
         if (selectedSize) {
             dispatch(addItemToCart({ ...data, quantity: productCount, size: selectedSize }));
-        } else {
-            console.log("Choose a size");
         }
     };
 
@@ -78,31 +75,30 @@ const ProductCard = () => {
         }
     };
 
-    const images = [data.category.image].concat(data.images);
     return (
         <div className="productCard">
             <div className='productCard__container container'>
                 <div className='productCard__container-main'>
                     <Carousel>
-                        {images.map((image, index) => (
+                        {data.images.map((image, index) => (
                             <Carousel.Item key={index}>
-                                <img className='productCard__image' src={image} alt='product-image' />
+                                <img className='productCard__image' src={image.url} alt='product-image' />
                             </Carousel.Item>
                         ))}
                     </Carousel>
                     <div className='productCard__info'>
                         <h2 className='productCard__info-title'>{data.title}</h2>
-                        <h2 className='productCard__info-price'>{data.price * 100} ₽</h2>
+                        <h2 className='productCard__info-price'>{data.price} ₽</h2>
 
                         <p className='productCard__info-size'>
                             Размер
                         </p>
                         <ul className="productCard__info-size--list">
-                            {SIZES.map((size) => (
-                                <li key={size}>
-                                    <button onClick={() => handleChangeSize(size)}
+                            {data.sizes.map((size) => (
+                                <li key={size.size}>
+                                    <button onClick={() => handleChangeSize(size.size)}
                                             className={`button productCard__info-size--btn btn-reset  ${selectedSize === size ? 'selected' : ''}`}>
-                                        {size}
+                                        {size.size}
                                     </button>
                                 </li>
                             ))}
@@ -148,6 +144,44 @@ const ProductCard = () => {
             </div>
         </div>
     );
+};
+
+ProductCard.propTypes = {
+    // Типы для данных, возвращаемых useGetProductQuery
+    data: PropTypes.shape({
+        id: PropTypes.number.isRequired,
+        name: PropTypes.string.isRequired,
+        title: PropTypes.string.isRequired,
+        price: PropTypes.number.isRequired,
+        category_id: PropTypes.number.isRequired,
+        description: PropTypes.string.isRequired,
+        images: PropTypes.arrayOf(
+            PropTypes.shape({
+                url: PropTypes.string.isRequired,
+                is_primary: PropTypes.bool
+            })
+        ).isRequired,
+        sizes: PropTypes.arrayOf(
+            PropTypes.shape({
+                size: PropTypes.string.isRequired
+            })
+        ).isRequired
+    }),
+    error: PropTypes.object,
+
+    // Типы для Redux store
+    currentUser: PropTypes.object,
+    favorite: PropTypes.arrayOf(
+        PropTypes.shape({
+            id: PropTypes.number.isRequired,
+            size: PropTypes.string
+        })
+    ),
+
+    // Типы для локального состояния
+    productCount: PropTypes.number,
+    selectedSize: PropTypes.string,
+    isFavorite: PropTypes.bool
 };
 
 export default ProductCard;

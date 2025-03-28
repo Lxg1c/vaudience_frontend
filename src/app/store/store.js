@@ -2,7 +2,7 @@ import { configureStore } from "@reduxjs/toolkit";
 import productReducer from "./slices/productSlice.js";
 import categoryReducer from "./slices/categorySlice.js";
 import userReducer from "./slices/userSlice.js";
-
+import {getProductById} from "../../enteties/product/index.js";
 
 
 export const store = configureStore({
@@ -10,9 +10,9 @@ export const store = configureStore({
         categories: categoryReducer,
         products: productReducer,
         user: userReducer,
-        [productApi.reducerPath]: productApi.reducer,
+        [getProductById.reducerPath]: getProductById.reducer,
     },
     middleware: (getDefaultMiddleware) =>
-        getDefaultMiddleware().concat(productApi.middleware),
+        getDefaultMiddleware().concat(getProductById.middleware),
     devTools: true,
 });
