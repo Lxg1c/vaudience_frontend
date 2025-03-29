@@ -13,12 +13,12 @@
 }
 
 .category__container-list--item > button {
-  background-color: vars.$text-bg-clr;
+  background-color: vars.$secondary-color;
   padding: 10px 30px;
   border-radius: 20px;
   border: 1px solid transparent;
 
   &:hover {
-    border: 1px solid vars.$hover-text-clr;
+    border: 1px solid vars.$disable-color;
   }
 }
