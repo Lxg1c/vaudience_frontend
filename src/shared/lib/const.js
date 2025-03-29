@@ -8,6 +8,7 @@ export const ROUTES = {
     REGISTER: '/register',
     PRODUCT: '/products/:id',
     FAVORITE: '/bookmark',
+    ABOUT: '/about',
 }
 
 export const api = axios.create({
