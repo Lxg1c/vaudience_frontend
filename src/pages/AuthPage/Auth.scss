@@ -1,0 +1,79 @@
+@use '../../shared/styles/variables' as vars;
+
+.auth__container {
+  padding: 60px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.auth__section {
+  padding: 40px;
+  border-radius: 12px;
+  background: white;
+  border: 1px solid vars.$primary-color;
+  width: 100%;
+  max-width: 1200px;
+}
+
+.auth-tabs {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  margin-bottom: 60px;
+  position: relative;
+}
+
+.auth-tab {
+  background: none;
+  border: none;
+  padding: 8px 0;
+  font-size: vars.$title-2-size;
+  cursor: pointer;
+  position: relative;
+  outline: none;
+  font-weight: vars.$regular;
+}
+
+.underline {
+  position: absolute;
+  bottom: -8px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: vars.$primary-color;
+}
+
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+.form-fields {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+.form-agreement {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 10px 0;
+}
+
+.agreement-text {
+  font-size: vars.$title-4-size;
+  color: vars.$primary-color;
+
+  a {
+    color: vars.$primary-color;
+    text-decoration: underline;
+  }
+}
+
+span {
+  color: vars.$error-color;
+  margin-left: 5px;
+}
