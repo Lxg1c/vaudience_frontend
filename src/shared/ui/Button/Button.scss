@@ -1,17 +1,19 @@
-
 @use "../../styles/variables" as vars;
 
 .button {
-  background-color: vars.$text-bg-clr;
-  padding: 10px 30px;
-  border-radius: 20px;
-  border: 1px solid transparent;
+  background-color: vars.$primary-color;
+  color: vars.$secondary-color;
+  width: 100%;
+  font-size: vars.$title-4-size;
+  padding: 15px 40px;
+  border-radius: 3px;
+  transition: 0.2s ease-in;
 
   &:hover {
-    border: 1px solid vars.$hover-text-clr;
-  };
+    background-color:  #151515;
+  }
 
-  &:active {
-    border: 1px solid vars.$hover-text-clr;
+  &:disabled {
+    background-color: #9d9d9d;
   }
 }
