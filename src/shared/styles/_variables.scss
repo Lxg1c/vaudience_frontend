@@ -6,16 +6,20 @@
 $Fahkwang-family: 'Fahkwang', sans-serif;
 $Tenor-family: 'Tenor Sans', sans-serif;
 
-// font-color
-$title-clr: #ffffff;
-$sub-title-clr: #ffffff8c;
-$text-clr: #212529;
-$text-bg-clr: #ffffff8c;
+// colors
+$primary-color: #212529;
+$secondary-color: #ffffff;
+$success-color: #2bd05a;
+$error-color: #dc3545;
+$disable-color: #9d9d9d;
+
 // font-size
-$title-1-size: 24px;
-// active
-$active-text-clr: #ffffff;
-$active-bg-clr: #141414;
-// hover
-$hover-bg-clr: #f2f2f2;
-$hover-text-clr: #000000;
+$title-1-size: 50px;
+$title-2-size: 45px;
+$title-4-size: 18px;
+
+// font-weight
+$regular: 400;
+$medium: 500;
+$semibold: 600;
+$bold: 700;
