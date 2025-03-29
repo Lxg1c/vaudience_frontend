@@ -7,7 +7,7 @@ const Category = () => {
     const dispatch = useDispatch();
     const categories = useSelector(state => state.categories.list);
     const [activeCategory, setActiveCategory] = useState(null);
-    const isLoading = useSelector(state => state.products.isLoading);
+    // const isLoading = useSelector(state => state.products.isLoading);
 
     useEffect(() => {
         handleClearFilter();
@@ -28,15 +28,6 @@ const Category = () => {
         <div className="category">
             <div className='category__container container'>
                 <ul className='category__container-list'>
-                    <li className={`category__container-list--item ${activeCategory === null ? 'active' : ''}`}>
-                        <button
-                            onClick={handleClearFilter}
-                            className='btn-reset'
-                            style={{display: isLoading ? 'none' : 'block'}}
-                        >
-                            ALL
-                        </button>
-                    </li>
                     {categories.map((category, index) => (
                         <li
                             key={index}
