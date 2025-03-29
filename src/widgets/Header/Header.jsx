@@ -39,7 +39,7 @@ const Header = () => {
                                 <Nav.Link as={Link} to="/#news">НОВИНКИ</Nav.Link>
                                 <Nav.Link as={Link} to="/#news">ОДЕЖДА</Nav.Link>
                                 <Nav.Link as={Link} to="/#news">АКСЕССУАРЫ</Nav.Link>
-                                <Nav.Link as={Link} to="/#aboutus">О НАС</Nav.Link>
+                                <Nav.Link as={Link} to="/about">О НАС</Nav.Link>
                             </Nav>
                         </Container>
                     </Navbar>
@@ -71,7 +71,7 @@ const Header = () => {
                             </Dropdown.Menu>
                         </Dropdown>
                     ) : (
-                        <Link to='/login' title='Login'>
+                        <Link to='/login' title='Auth'>
                             <button className='btn-reset header__user-btn'>
                                 <img src={UserIcon} className='header__user-icon' alt='User' />
                             </button>
