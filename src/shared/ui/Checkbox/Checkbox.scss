@@ -1,0 +1,57 @@
+@use "../../styles/variables" as vars;
+
+.checkbox-container {
+  display: inline-block;
+  position: relative;
+  cursor: pointer;
+  height: 20px;
+  width: 20px;
+}
+
+.checkbox-input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+.checkbox-custom {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 20px;
+  width: 20px;
+  background-color: #fff;
+  border: 1px solid vars.$primary-color;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+
+  &:after {
+    content: "";
+    position: absolute;
+    display: none;
+    left: 7px;
+    top: 3px;
+    width: 5px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+  }
+}
+
+.checkbox-input:checked ~ .checkbox-custom {
+  background-color: vars.$primary-color;
+  border-color: vars.$primary-color;
+}
+
+.checkbox-input:checked ~ .checkbox-custom:after {
+  display: block;
+}
+
+//.checkbox-input:disabled ~ .checkbox-custom {
+//  background-color: vars.$disabled-bg;
+//  border-color: vars.$disabled-border;
+//  cursor: not-allowed;
+//}
