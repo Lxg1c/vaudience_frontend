@@ -1,21 +1,23 @@
-import React from 'react';
 import PropTypes from 'prop-types';
 import './Input.scss';
 
-const Input = React.forwardRef(({ placeholder, disabled = false, type = 'text' }, ref) => {
+const Input = ({ placeholder, onChange, name, disabled = false, type = 'text' }) => {
     return (
         <input
-            ref={ref}
             type={type}
+            name={name}
+            onChange={onChange}
             placeholder={placeholder}
             disabled={disabled}
             className="input"
         />
     );
-});
+};
 
 Input.propTypes = {
     placeholder: PropTypes.string,
+    name: PropTypes.string,
+    onChange: PropTypes.func,
     disabled: PropTypes.bool,
     type: PropTypes.string,
 };
