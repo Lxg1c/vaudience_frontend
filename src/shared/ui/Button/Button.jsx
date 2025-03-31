@@ -1,15 +1,16 @@
 import PropTypes from "prop-types";
 import "./Button.scss";
 
-const Button = ({text, disabled=false}) => {
+const Button = ({text, onClick, disabled=false}) => {
     return (
-        <button className="button" disabled={disabled}>{text}</button>
+        <button className="button" onClick={onClick} disabled={disabled}>{text}</button>
     )
 }
 
 Button.propTypes = {
     text: PropTypes.string.isRequired,
-    disabled: PropTypes.bool,
+    onClick: PropTypes.func,
+    disabled: PropTypes.bool
 }
 
 export default Button
