@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { createUser, loginUser, aboutUser } from "../../../enteties/user/api.js";
+import { registerUser, loginUser, aboutUser } from "../../../enteties/user/api.js";
 
 const loadStateFromLocalStorage = () => {
     try {
@@ -111,13 +111,13 @@ const userSlice = createSlice({
 
     extraReducers: (builder) => {
         builder
-            .addCase(createUser.fulfilled, (state) => {
+            .addCase(registerUser.fulfilled, (state) => {
                 state.isLoading = false;
                 state.status = 'succeeded';
                 state.haveToken = true;
                 saveStateToLocalStorage(state);
             })
-            .addCase(createUser.rejected, (state, action) => {
+            .addCase(registerUser.rejected, (state, action) => {
                 state.isLoading = false;
                 state.status = 'failed';
                 state.error = action.error.message;
