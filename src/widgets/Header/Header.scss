@@ -1,17 +1,10 @@
-$primary-color: #212529;
-$secondary-color: #fff;
-$black-clr: #000000;
-$Arimo-family: 'Arimo', sans-serif;
-$Play-family: 'Play', sans-serif;
-$burger-line-width: 35px;
-$burger-line-height: 2px;
-$burger-line-gap: 12px;
-$btn-txt-clr: #ffffff;
+@use "../../shared/styles/variables" as vars;
+
 $hover-color: rgb(139, 185, 254);
 
 .header {
-  background-color: $primary-color;
-  color: $secondary-color;
+  background-color: vars.$primary-color;
+  color: vars.$secondary-color;
   padding: 10px 0;
 
   &__container {
@@ -38,7 +31,7 @@ $hover-color: rgb(139, 185, 254);
     gap: 30px;
 
     &-icon {
-      background-color: $primary-color;
+      background-color: vars.$primary-color;
     }
   }
 
@@ -49,18 +42,18 @@ $hover-color: rgb(139, 185, 254);
     position: relative;
 
     &-counter {
-      background: $black-clr;
+      background: vars.$primary-color;
       padding: 1px 5px;
       border-radius: 30px;
       position: absolute;
       bottom: 0;
       right: 0;
       transform: translate(0%, 0%);
-      color: $secondary-color;
+      color: vars.$secondary-color;
       font: {
         size: 12px;
         weight: 600;
-        family: $Arimo-family;
+        family: vars.$Tenor-family;
       }
     }
 
@@ -83,7 +76,7 @@ $hover-color: rgb(139, 185, 254);
   &-item {
     font: {
       size: 20px;
-      family: $Arimo-family;
-    };
+      family: vars.$Tenor-family;
+    }
   }
 }
