@@ -24,7 +24,7 @@ $item-hover-clr: #f9f9f9;
     position: relative;
 
     &:after {
-      content: '';
+      content: "";
       position: absolute;
       left: -20px;
       bottom: -15%;
@@ -53,7 +53,6 @@ $item-hover-clr: #f9f9f9;
       font-size: 20px;
       font-weight: 500;
       line-height: 26px;
-
 
       &:hover {
         background-color: $item-hover-clr;

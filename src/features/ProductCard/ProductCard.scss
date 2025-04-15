@@ -1,176 +1,172 @@
-$Fahkwang-family: 'Fahkwang', sans-serif;
-$Tenor-family: 'Tenor Sans', sans-serif;
-$Arimo-family: 'Arimo', sans-serif;
-$text-color: #141414;
-$size-btn-bg: #d8d8d8;
-$dark_btn-bg: #F8F4FF;
-
-html,
-body {
-  height: 100vh;
-}
+@use "../../shared/styles/variables" as vars;
 
 .productCard {
+  padding: 40px 0 160px;
+
+  &__container {
+    &-main {
+      display: flex;
+      gap: 40px;
+
+      @media (max-width: 768px) {
+        flex-direction: column;
+      }
+    }
+  }
 
   &__image {
-    object-fit: cover;
-    height: auto;
     max-width: 600px;
-  }
-  &__back-btn {
-    position: absolute;
-    top: 10%;
-    left: -3%;
-    background-color: transparent;
-  }
-
-  &__container-main {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 125px;
-    position: relative;
-    height: 100vh;
+    width: 100%;
+    object-fit: cover;
+    border-radius: 16px;
   }
 
   &__info {
-
-    &-favorite {
-      background-color: transparent;
-    }
-
-    &-title,
-    &-price,
-    &-size,
-    &-size--btn,
-    &-subtitle {
-      color: $text-color;
-      font-family: $Arimo-family;
-    }
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
 
     &-title {
-      font-weight: 700;
-      font-size: 40px;
-      line-height: 52px;
-    }
-
-    &-subtitle {
-      margin: 20px 0;
-      font-weight: 600;
-      font-size: 30px;
-      line-height: 35px;
+      font-size: 24px;
+      font-weight: bold;
     }
 
     &-price {
-      font-weight: 500;
-      font-size: 40px;
-      line-height: 52px;
-      margin-top: 20px;
+      font-size: 20px;
+      font-weight: 600;
+      color: #444;
     }
 
     &-size {
-      font-family: $Arimo-family;
-      font-weight: 400;
-      font-size: 25px;
-      line-height: 30px;
-      margin: 20px 0 5px;
-
-      &--btn {
-        font-family: $Arimo-family;
-        font-weight: 500;
-        font-size: 24px;
-        line-height: 30px;
-        background-color: $size-btn-bg;
-        border: 1.5px solid transparent;
-        padding: 5px 65px 5px 5px;
-        border-radius: 5px;
-      }
+      font-weight: 500;
 
       &--list {
         display: flex;
-        align-items: center;
-        gap: 20px;
+        flex-wrap: wrap;
+        gap: 8px;
+        max-width: 300px;
+        overflow-x: auto;
+        padding-bottom: 5px;
+
+        &::-webkit-scrollbar {
+          height: 4px;
+        }
+
+        &::-webkit-scrollbar-thumb {
+          background-color: #bbb;
+          border-radius: 8px;
+        }
+      }
+
+      &--btn {
+        padding: 6px 14px;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        color: vars.$primary-color;
+        background-color: vars.$secondary-color;
+        border: 1px solid vars.$primary-color;
+
+        &:hover {
+          background-color: vars.$primary-color;
+          color: vars.$secondary-color;
+          border: 1px solid transparent;
+        }
+
+        &.selected {
+          background-color: #000;
+          color: #fff;
+          border-color: #000;
+        }
       }
     }
 
     &-count {
-      font-family: $Arimo-family;
-      font-weight: 300;
-      font-size: 40px;
-      line-height: 50px;
-      position: relative;
-      max-width: 125px;
-      width: 100%;
-      border: 1.5px solid $text-color;
-      text-align: center;
-      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 20px;
+
       span {
-        margin: 0 20px;
+        color: vars.$primary-color;
       }
 
       &--minus,
       &--plus {
-        position: absolute;
-        top: 50%;
-        transform: translateY(-50%);
-      }
+        width: 32px;
+        height: 32px;
+        background-color: #eee;
+        border-radius: 8px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        user-select: none;
+        transition: 0.2s;
 
-      &--minus {
-        left: 5px;
-      }
-
-      &--plus {
-        right: 5px;
+        &:hover {
+          background-color: #ddd;
+        }
       }
     }
 
     &-buy {
       display: flex;
       align-items: center;
-      gap: 20px;
+      gap: 12px;
 
       &--btn {
-        font-family: $Arimo-family;
-        font-weight: 500;
-        font-size: 32px;
-        line-height: 30px;
-        background-color: #ffffff;
-        border: 3px solid $text-color;
         padding: 10px 20px;
+        font-size: 16px;
+        background-color: #000;
+        color: #fff;
+        border: none;
+        border-radius: 10px;
         cursor: pointer;
-        border-radius: 20px;
+        transition: all 0.2s ease;
 
-        &:hover {
-          background-color: $dark_btn-bg;
+        &:disabled {
+          background-color: #ccc;
+          cursor: not-allowed;
+        }
+
+        &:hover:not(:disabled) {
+          background-color: #222;
         }
       }
     }
 
-    &-description {
+    &-favorite {
+      display: flex;
+      align-items: center;
+      background: none;
+      border: none;
+      cursor: pointer;
+
+      svg.favorite {
+        transform: scale(1.05);
+        transition: transform 0.2s ease;
+      }
+
+      svg.not-favorite:hover path {
+        fill: #f8d7da;
+      }
+    }
+
+    &-subtitle {
       margin-top: 20px;
-      list-style-type: none;
-      padding: 0;
+      font-weight: bold;
+    }
+
+    &-description {
+      font-size: 16px;
+      color: #555;
+      line-height: 1.5;
 
       &-item {
-        font-family: $Tenor-family;
-        font-weight: 400;
-        font-size: 20px;
-        line-height: 25px;
-        margin-bottom: 10px;
+        margin-bottom: 8px;
       }
     }
   }
-}
-
-.selected {
-  border: 1.5px solid $text-color !important;
-  background-color: $dark_btn-bg;
-}
-
-.favorite {
-  color: red;
-}
-
-.not-favorite {
-  color: #ffffff;
 }

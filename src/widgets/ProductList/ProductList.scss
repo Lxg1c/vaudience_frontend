@@ -1,10 +1,11 @@
-$Fahkwang-family: 'Fankwang', sans-serif;
-$Tenor-family: 'Tenor Sans', sans-serif;
+$Fahkwang-family: "Fankwang", sans-serif;
+$Tenor-family: "Tenor Sans", sans-serif;
 $text-color: #141414;
 $img-bg: #f2f2f2;
 
 // ProductList.scss
 .products {
+  padding: 40px 0 200px;
   &__container {
     display: flex;
     gap: 15px;
