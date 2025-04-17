@@ -1,11 +1,11 @@
 import "./App.scss";
-import AppRoutes from "../features/Routes/Routes.jsx";
+import AppRoutes from "./routes/routes.jsx";
 import { useDispatch } from "react-redux";
-import { getCategories } from "../enteties/category/api.js";
+import { getCategories } from "@/enteties/category/api/api.js";
 import { useEffect } from "react";
-import Header from "../widgets/Header/Header.jsx";
-import Footer from "../widgets/Footer/Footer.jsx";
-import { getProducts } from "../enteties/product/api.js";
+import Header from "@/widgets/Header/Header.jsx";
+import Footer from "@/widgets/Footer/Footer.jsx";
+import { getProducts } from "@/enteties/product/api/api.js";
 
 function App() {
   const dispatch = useDispatch();
