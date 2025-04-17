@@ -1,9 +1,10 @@
 import PropTypes from "prop-types";
 import "./Input.scss";
 
-const Input = ({ placeholder, onChange, name, disabled = false, type = "text" }) => {
+const Input = ({ value, placeholder, onChange, name, disabled = false, type = "text" }) => {
   return (
     <input
+      value={value}
       type={type}
       name={name}
       onChange={onChange}
@@ -15,6 +16,7 @@ const Input = ({ placeholder, onChange, name, disabled = false, type = "text" })
 };
 
 Input.propTypes = {
+  value: PropTypes.string,
   placeholder: PropTypes.string,
   name: PropTypes.string,
   onChange: PropTypes.func,
