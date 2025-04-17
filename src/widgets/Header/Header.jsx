@@ -1,19 +1,20 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { aboutUser } from "../../enteties/user/auth.js";
 import { Dropdown, Container, Nav, Navbar } from "react-bootstrap";
-import { logoutUser } from "../../app/store/slices/userSlice.js";
-import UserIcon from "../../assets/user.svg";
-import Logo from "../../assets/logo.svg";
-import Bookmark from "../../assets/bookmark.svg";
-import Bash from "../../assets/bash.svg";
+import UserIcon from "@/assets/user.svg";
+import Logo from "@/assets/logo.svg";
+import Bookmark from "@/assets/bookmark.svg";
+import Bash from "@/assets/bash.svg";
 import "./Header.scss";
-import { filterByCategory, resetFilter } from "../../app/store/slices/productSlice.js";
-import { setActiveCategory } from "../../app/store/slices/categorySlice.js";
+import { ROUTES } from "@/shared/lib/const";
+import { aboutUser, logoutUser } from "@/enteties/user/index.js";
+import { filterByCategory, resetFilter } from "@/enteties/product/model/productSlice.js";
+import { setActiveCategory } from "@/enteties/category/index.js";
 
 const Header = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const accessToken =
@@ -29,6 +30,7 @@ const Header = () => {
 
   const loginOut = () => {
     dispatch(logoutUser());
+    navigate("./");
   };
 
   const changeCategory = (categoryId) => {
@@ -88,8 +90,10 @@ const Header = () => {
               </Dropdown.Toggle>
 
               <Dropdown.Menu>
-                <Dropdown.Item href="#/action-1">Профиль</Dropdown.Item>
-                <Dropdown.Item href="#/action-2" onClick={loginOut}>
+                <Dropdown.Item as={Link} to={ROUTES.PROFILE}>
+                  Профиль
+                </Dropdown.Item>
+                <Dropdown.Item as="button" onClick={loginOut}>
                   Выйти
                 </Dropdown.Item>
               </Dropdown.Menu>
