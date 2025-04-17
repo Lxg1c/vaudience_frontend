@@ -1,11 +1,11 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import "./Auth.scss";
-import Input from "../../shared/ui/Input/Input.jsx";
-import Button from "../../shared/ui/Button/Button.jsx";
-import Checkbox from "../../shared/ui/Checkbox/Checkbox.jsx";
+import Input from "@/shared/ui/Input/Input.jsx";
+import Button from "@/shared/ui/Button/Button.jsx";
+import Checkbox from "@/shared/ui/Checkbox/Checkbox.jsx";
 import { useDispatch } from "react-redux";
-import {registerUser, loginUser, aboutUser} from "../../enteties/user/index.js";
+import { registerUser, loginUser, aboutUser } from "@/enteties/user/index.js";
 import { Spinner } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 
@@ -115,16 +115,24 @@ const Auth = () => {
             password: formData.password,
           };
 
-        try {
-            if (authType === "login") {
-                await dispatch(loginUser(payload));
-            } else {
-                await dispatch(registerUser(payload));
-            }
-        } finally {
-            setIsLoading(false);
+    try {
+      if (authType === "login") {
+        const response = await dispatch(loginUser(payload));
+
+        if (response.meta.requestStatus === "fulfilled") {
+          await dispatch(aboutUser());
+          navigate("../");
         }
-    };
+      } else {
+        const response = await dispatch(registerUser(payload));
+        if (response.meta.requestStatus === "fulfilled") {
+          setAuthType("login");
+        }
+      }
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
   const isFormValid = () => {
     if (authType === "login") {

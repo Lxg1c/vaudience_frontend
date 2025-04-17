@@ -1,4 +1,4 @@
-@use "../../shared/styles/variables" as vars;
+@use "@/shared/styles/variables" as vars;
 
 .auth__container {
   padding: 60px 0;
@@ -33,6 +33,7 @@
   position: relative;
   outline: none;
   font-weight: vars.$regular;
+  color: vars.$primary-color;
 }
 
 .underline {

@@ -1,4 +1,4 @@
-@use '../../shared/styles/variables' as vars;
+@use "@/shared/styles/variables" as vars;
 
 .category__container {
   margin-bottom: 30px;
@@ -13,7 +13,6 @@
 }
 
 .category__container-list--item > button {
-  background-color: vars.$secondary-color;
   padding: 10px 30px;
   border-radius: 20px;
   border: 1px solid transparent;
@@ -21,4 +20,9 @@
   &:hover {
     border: 1px solid vars.$disable-color;
   }
+}
+
+.active-category {
+  background-color: vars.$primary-color;
+  color: vars.$secondary-color;
 }

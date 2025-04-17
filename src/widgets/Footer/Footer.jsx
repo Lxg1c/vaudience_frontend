@@ -1,6 +1,6 @@
-import VKIcon from "../../assets/vk.svg";
-import Logo from "../../assets/dark_logo.svg";
-import TelegramIcon from "../../assets/telegram.svg";
+import VKIcon from "@/assets/vk.svg";
+import Logo from "@/assets/dark_logo.svg";
+import TelegramIcon from "@/assets/telegram.svg";
 import "./Footer.scss";
 import { Link } from "react-router-dom";
 
