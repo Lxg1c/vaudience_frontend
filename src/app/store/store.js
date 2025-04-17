@@ -1,16 +1,15 @@
 import { configureStore } from "@reduxjs/toolkit";
-import productReducer from "./slices/productSlice.js";
-import categoryReducer from "./slices/categorySlice.js";
-import userReducer from "./slices/userSlice.js";
-import { getProductById } from "../../enteties/product/index.js";
+import { productReducer, productApi } from "@/enteties/product";
+import { categoryReducer } from "@/enteties/category";
+import { userReducer } from "@/enteties/user";
 
 export const store = configureStore({
   reducer: {
     categories: categoryReducer,
     products: productReducer,
     user: userReducer,
-    [getProductById.reducerPath]: getProductById.reducer,
+    [productApi.reducerPath]: productApi.reducer,
   },
-  middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(getProductById.middleware),
+  middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(productApi.middleware),
   devTools: true,
 });
