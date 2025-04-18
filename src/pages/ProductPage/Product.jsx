@@ -1,12 +1,12 @@
 import { useEffect } from "react";
-import "./Home.scss";
+import "./Product.scss";
 import { useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
-import ProductList from "../../widgets/ProductList/ProductList.jsx";
-import Category from "../../features/Category/Category.jsx";
-import Spinner from "react-bootstrap/Spinner";
+import ProductList from "@/widgets/ProductList/ProductList.jsx";
+import Category from "@/features/Category/Category.jsx";
+import Loader from "@/shared/ui/Loader/Loader.jsx";
 
-const Home = () => {
+const Product = () => {
   const productList = useSelector((state) => state.products.filtered);
   const isLoading = useSelector((state) => state.products.isLoading);
   const location = useLocation();
@@ -38,15 +38,13 @@ const Home = () => {
                 height: "100vh",
               }}
             >
-              <Spinner animation="border" role="status">
-                <span className="visually-hidden">Loading...</span>
-              </Spinner>
+              <Loader />
             </div>
           ) : productList && productList.length > 0 ? (
             <ProductList productList={productList} isLoading={isLoading} />
           ) : (
             <div className="home__catalog-title" style={{ margin: "100px 0" }}>
-              No products available
+              НЕТ ДОСТУПНОГО ТОВАРА
             </div>
           )}
         </div>
@@ -55,4 +53,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default Product;
