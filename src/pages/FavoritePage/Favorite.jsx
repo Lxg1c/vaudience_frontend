@@ -1,9 +1,9 @@
 import deleteIcon from "@/assets/delete.svg";
 import "./Favorite.scss";
 import { useDispatch, useSelector } from "react-redux";
-import { removeItemFromFavorite } from "@/enteties/user/model/userSlice.js";
 import { Link } from "react-router-dom";
 import Button from "@/shared/ui/Button/Button.jsx";
+import { removeItemFromFavorite } from "@/enteties/favorite/index.js";
 
 const Favorite = () => {
   const dispatch = useDispatch();

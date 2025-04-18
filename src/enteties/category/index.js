@@ -1,1 +1,3 @@
-export * from "./api.js";
+export * from "./model/categorySlice.js";
+export { default as categoryReducer } from "./model/categorySlice.js";
+export * from "./api/api.js";

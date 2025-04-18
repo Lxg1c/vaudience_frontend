@@ -1,5 +1,5 @@
 import { Routes, Route } from "react-router-dom";
-import Home from "@/pages/HomePage/Home.jsx";
+import Product from "@/pages/ProductPage/Product.jsx";
 import Cart from "@/pages/CartPage/Cart.jsx";
 import Auth from "@/pages/AuthPage/Auth.jsx";
 import { ROUTES } from "@/shared/lib/const.js";
@@ -11,7 +11,7 @@ import Profile from "@/pages/ProfilePage/Profile.jsx";
 const AppRoutes = () => {
   return (
     <Routes>
-      <Route index element={<Home />} />
+      <Route index element={<Product />} />
 
       <Route path={ROUTES.CART} element={<Cart />} />
 

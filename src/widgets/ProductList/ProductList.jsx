@@ -1,24 +1,11 @@
 import "./ProductList.scss";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
+import Loader from "@/shared/ui/Loader/Loader.jsx";
 
 const ProductList = ({ productList, isLoading }) => {
   if (isLoading) {
-    return (
-      <div className="preloader-wrapper active">
-        <div className="spinner-layer spinner-red-only">
-          <div className="circle-clipper left">
-            <div className="circle"></div>
-          </div>
-          <div className="gap-patch">
-            <div className="circle"></div>
-          </div>
-          <div className="circle-clipper right">
-            <div className="circle"></div>
-          </div>
-        </div>
-      </div>
-    );
+    return <Loader />;
   }
 
   if (!productList || productList.length === 0) {

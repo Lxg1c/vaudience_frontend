@@ -1,19 +1,23 @@
-const Loader = () => {
-  return (
-    <div className="preloader-wrapper active">
-      <div className="spinner-layer spinner-red-only">
-        <div className="circle-clipper left">
-          <div className="circle"></div>
-        </div>
-        <div className="gap-patch">
-          <div className="circle"></div>
-        </div>
-        <div className="circle-clipper right">
-          <div className="circle"></div>
-        </div>
-      </div>
-    </div>
-  );
-};
+import { useState, useEffect, useRef } from "react";
+import { Spin } from "antd";
 
-export default Loader;
+const Loader = () => {
+  const auto = false;
+  const [percent, setPercent] = useState(-50);
+  const timerRef = useRef(null);
+
+  useEffect(() => {
+    timerRef.current = setTimeout(() => {
+      setPercent((v) => {
+        const nextPercent = v + 5;
+        return nextPercent > 150 ? -50 : nextPercent;
+      });
+    }, 100);
+    return () => clearTimeout(timerRef.current);
+  }, [percent]);
+
+  const mergedPercent = auto ? "auto" : percent;
+
+  return <Spin percent={mergedPercent} size="large" />;
+};
+export default Loader
