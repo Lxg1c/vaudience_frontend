@@ -1,30 +1,47 @@
 import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { useGetProductQuery } from "../../enteties/product/index.js";
 import "./ProductCard.scss";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  addItemToCart,
-  addItemToFavorite,
-  removeItemFromFavorite,
-} from "../../app/store/slices/userSlice.js";
 import { Carousel, Spinner } from "react-bootstrap";
-import "../../shared/ui/Button/Button.scss";
+import "@/shared/ui/Button/Button.scss";
 import { notification } from "antd";
+import { useGetProductQuery } from "@/enteties/product/model/productApi.js";
+import { addProductToCart } from "@/enteties/cart/index.js";
+import { addItemToFavorite, removeItemFromFavorite } from "@/enteties/favorite/index.js";
+import Loader from "@/shared/ui/Loader/Loader.jsx";
 
 const ProductCard = () => {
-  const [api, contextHolder] = notification.useNotification();
   const dispatch = useDispatch();
   const { id } = useParams();
   const navigate = useNavigate();
+
   const [productCount, setProductCount] = useState(1);
   const [selectedSize, setSelectedSize] = useState(null);
-  const { data, error, isLoading } = useGetProductQuery({ id });
+
+  const { data, error, isLoading } = useGetProductQuery(id);
   const { currentUser, favorite } = useSelector(({ user }) => user);
+  const isFavorite = favorite?.some((item) => item.id === data.id && item.size === selectedSize);
+
+  const [api, contextHolder] = notification.useNotification();
 
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
+
+  if (isLoading)
+    return (
+      <div
+        style={{ display: "flex", justifyContent: "center", alignItems: "center", height: "100vh" }}
+      >
+        <Loader />
+      </div>
+    );
+
+  if (error) return <div>Error: {error.message || "ОШИБКА. ЧТО-ТО ПОШЛО НЕ ТАК"}</div>;
+  if (!data) return <div>No product found</div>;
+
+  const handleAddCount = () => setProductCount((prev) => prev + 1);
+  const handleRemoveCount = () => setProductCount((prev) => Math.max(prev - 1, 1));
 
   const showNotification = (type, message, description = "", placement = "topRight") => {
     api[type]({
@@ -43,31 +60,19 @@ const ProductCard = () => {
     }
   };
 
-  if (isLoading)
-    return (
-      <div
-        style={{ display: "flex", justifyContent: "center", alignItems: "center", height: "100vh" }}
-      >
-        <Spinner animation="border" role="status">
-          <span className="visually-hidden">Loading...</span>
-        </Spinner>
-      </div>
-    );
-  if (error) return <div>Error: {error.message || "Something went wrong"}</div>;
-  if (!data) return <div>No product found</div>;
-
-  const isFavorite = favorite?.some((item) => item.id === data.id && item.size === selectedSize);
-
-  const handleAddCount = () => setProductCount((prev) => prev + 1);
-  const handleRemoveCount = () => setProductCount((prev) => Math.max(prev - 1, 1));
-
   const handleAddToCart = () => {
     if (selectedSize) {
-      dispatch(addItemToCart({ ...data, quantity: productCount, size: selectedSize }));
+      const id = currentUser.id;
+      const productData = {
+        product_id: data.id,
+        size: selectedSize.toLowerCase(),
+        quantity: productCount,
+      };
+      dispatch(addProductToCart({ id, productData }));
       showNotification(
         "success",
         "Товар добавлен в корзину",
-        `${data.title}, размер: ${selectedSize}`,
+        `${data.name}, размер: ${selectedSize}`,
       );
     } else {
       showNotification("warning", "Выберите размер", "Пожалуйста, укажите размер товара");
@@ -76,7 +81,6 @@ const ProductCard = () => {
 
   const handleChangeSize = (size) => {
     setSelectedSize(size);
-    showNotification("info", "Размер изменен", `Выбран размер: ${size}`);
   };
 
   const toggleFavorite = () => {
