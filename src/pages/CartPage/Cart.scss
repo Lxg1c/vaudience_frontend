@@ -2,6 +2,15 @@
 @use "sass:color";
 
 .cart {
+  height: 100vh;
+
+  &__loader {
+    display: flex;
+    align-items: center;
+    justify-self: center;
+    height: 100%;
+  }
+
   &__container {
     display: flex;
     justify-content: space-between;

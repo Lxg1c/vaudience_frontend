@@ -11,10 +11,16 @@ import { ROUTES } from "@/shared/lib/const";
 import { aboutUser, logoutUser } from "@/enteties/user/index.js";
 import { filterByCategory, resetFilter } from "@/enteties/product/model/productSlice.js";
 import { setActiveCategory } from "@/enteties/category/index.js";
+import { getUserCart } from "@/enteties/cart/api/api.js";
 
 const Header = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
+  const { currentUser } = useSelector((state) => state.user);
+  const cart = useSelector((state) => state.cart.cart || 0);
+  const cartCount = cart.reduce((acc, cur) => cur.quantity + acc, 0);
+  const bookmarkCount = useSelector((state) => state.user.favorite?.length || 0);
 
   useEffect(() => {
     const accessToken =
@@ -24,9 +30,11 @@ const Header = () => {
     }
   }, [dispatch]);
 
-  const { currentUser } = useSelector((state) => state.user);
-  const cartCount = useSelector((state) => state.user.cart?.length || 0);
-  const bookmarkCount = useSelector((state) => state.user.favorite?.length || 0);
+  useEffect(() => {
+    if (currentUser?.id) {
+      dispatch(getUserCart({ id: currentUser.id }));
+    }
+  }, [currentUser, dispatch]);
 
   const loginOut = () => {
     dispatch(logoutUser());
@@ -70,7 +78,7 @@ const Header = () => {
 
         {/* Центральная часть: логотип */}
         <div className="header__logo">
-          <Link to="/" title="Home">
+          <Link to="/" title="Product">
             <img src={Logo} alt="logo" />
           </Link>
         </div>
