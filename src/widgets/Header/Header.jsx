@@ -12,6 +12,8 @@ import { aboutUser, logoutUser } from "@/enteties/user/index.js";
 import { filterByCategory, resetFilter } from "@/enteties/product/model/productSlice.js";
 import { setActiveCategory } from "@/enteties/category/index.js";
 import { getUserCart } from "@/enteties/cart/api/api.js";
+import {clearFavorite, getFavorites} from "@/enteties/favorite/index.js";
+import {clearCart} from "@/enteties/cart/index.js";
 
 const Header = () => {
   const dispatch = useDispatch();
@@ -20,7 +22,7 @@ const Header = () => {
   const { currentUser } = useSelector((state) => state.user);
   const cart = useSelector((state) => state.cart.cart || 0);
   const cartCount = cart.reduce((acc, cur) => cur.quantity + acc, 0);
-  const bookmarkCount = useSelector((state) => state.user.favorite?.length || 0);
+  const bookmarkCount = useSelector((state) => state.favorite.favorite.length || 0);
 
   useEffect(() => {
     const accessToken =
@@ -33,11 +35,14 @@ const Header = () => {
   useEffect(() => {
     if (currentUser?.id) {
       dispatch(getUserCart({ id: currentUser.id }));
+      dispatch(getFavorites(currentUser.id));
     }
   }, [currentUser, dispatch]);
 
   const loginOut = () => {
     dispatch(logoutUser());
+    dispatch(clearCart());
+    dispatch(clearFavorite());
     navigate("./");
   };
 
