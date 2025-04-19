@@ -137,23 +137,6 @@
       }
     }
 
-    &-favorite {
-      display: flex;
-      align-items: center;
-      background: none;
-      border: none;
-      cursor: pointer;
-
-      svg.favorite {
-        transform: scale(1.05);
-        transition: transform 0.2s ease;
-      }
-
-      svg.not-favorite:hover path {
-        fill: #f8d7da;
-      }
-    }
-
     &-subtitle {
       margin-top: 20px;
       font-weight: bold;
@@ -167,6 +150,34 @@
       &-item {
         margin-bottom: 8px;
       }
+    }
+  }
+}
+
+.favorite-button {
+  width: 32px; // или 24px, как нужно
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+
+  // Предотвращает изменение размеров и смещение
+  svg {
+    width: 24px;
+    height: 24px;
+    display: block;
+    transition: fill 0.2s ease, color 0.2s ease;
+    color: black; // цвет по умолчанию
+
+    // Если используешь fill вместо color
+    fill: black;
+  }
+
+  &.active {
+    svg {
+      color: vars.$error-color;
+      fill: vars.$error-color;
     }
   }
 }
