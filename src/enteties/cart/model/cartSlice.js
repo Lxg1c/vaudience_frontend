@@ -14,6 +14,14 @@ const cartSlice = createSlice({
     isLoading: false,
     status: "idle",
   },
+  reducers: {
+    clearCart: (state) => {
+      state.cart = [];
+      state.isLoading = false;
+      state.status = "idle";
+      state.error = null;
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(addProductToCart.pending, (state) => {
@@ -98,5 +106,7 @@ const cartSlice = createSlice({
       });
   },
 });
+
+export const { clearCart } = cartSlice.actions;
 
 export default cartSlice.reducer;
